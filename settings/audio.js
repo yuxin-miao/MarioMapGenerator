@@ -5,7 +5,7 @@ FullScreenMario.prototype.settings.audio = {
     prefix: "FullScreenMario::AudioPlayer::",
     values: {
       volume: {
-        valueDefault: 0.9,
+        valueDefault: 0.7,
         storeLocally: true,
       },
       muted: {

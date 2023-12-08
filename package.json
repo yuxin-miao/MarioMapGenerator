@@ -5,7 +5,7 @@
   "scripts": {
     "build": "./node_modules/grunt-cli/bin/grunt ",
     "serve": "npx live-server dist/",
-    "watch": "npx watchman"
+    "watch": "node watchman.js"
   },
   "author": {
     "name": "Josh Goldberg",
