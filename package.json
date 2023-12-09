@@ -3,9 +3,10 @@
   "description": "An HTML5 remake of the original Super Mario Brothers - expanded for modern browsing.",
   "version": "0.9.1",
   "scripts": {
+    "tsc:dev": "node tsc.js",
     "build": "./node_modules/grunt-cli/bin/grunt ",
     "serve": "npx live-server dist/",
-    "watch": "node watchman.js"
+    "bundle:dev": "node grunt.js"
   },
   "author": {
     "name": "Josh Goldberg",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@esm2cjs/execa": "^6.1.1-cjs.1",
     "fb-watchman": "^2.0.2",
+    "glob": "^10.3.10",
     "grunt-cli": "^1.4.3"
   }
 }
