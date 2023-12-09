@@ -3,7 +3,7 @@ const client = new watchman.Client();
 const { execa } = require("@esm2cjs/execa");
 const { join } = require("path");
 
-const dir_of_interest = join(process.cwd(), "settings");
+const dir_of_interest = join(process.cwd(), "GameStartr");
 
 // `watch` is obtained from `resp.watch` in the `watch-project` response.
 // `relative_path` is obtained from `resp.relative_path` in the
