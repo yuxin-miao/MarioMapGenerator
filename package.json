@@ -3,7 +3,6 @@
   "description": "An HTML5 remake of the original Super Mario Brothers - expanded for modern browsing.",
   "version": "0.9.1",
   "scripts": {
-    "tsc:dev": "node tsc.js",
     "build": "./node_modules/grunt-cli/bin/grunt ",
     "serve": "npx live-server dist/",
     "bundle:dev": "node grunt.js"
