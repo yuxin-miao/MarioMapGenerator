@@ -3,7 +3,7 @@ const client = new watchman.Client();
 const { execa } = require("@esm2cjs/execa");
 const { join } = require("path");
 
-const dir_of_interest = join(process.cwd(), "GameStartr");
+const dir_of_interest = join(process.cwd());
 
 // `watch` is obtained from `resp.watch` in the `watch-project` response.
 // `relative_path` is obtained from `resp.relative_path` in the
@@ -11,10 +11,12 @@ const dir_of_interest = join(process.cwd(), "GameStartr");
 function make_subscription(client, watch, relative_path, onChange) {
   sub = {
     // Match any `.js` file in the dir_of_interest
-    expression: ["allof", ["match", "*.js"]],
+    expression: ["allof", ["name", "FullScreenMario.js", "wholename"]],
+    // path: ["FullScreenMario.js"],
     // Which fields we're interested in
     fields: ["name", "size", "mtime_ms", "exists", "type"],
   };
+
   if (relative_path) {
     sub.relative_root = relative_path;
   }

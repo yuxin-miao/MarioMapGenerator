@@ -1,4 +1,3 @@
-;
 /**
  * InputWritr
  * A general utility for automating interactions with user-called events linked
@@ -51,7 +50,7 @@ var InputWritr = (function () {
             throw new Error("No triggers given to InputWritr.");
         }
         this.triggers = settings.triggers;
-        // Headless browsers like PhantomJS might not know performance, so 
+        // Headless browsers like PhantomJS might not know performance, so
         // Date.now is used as a backup
         if (typeof settings.getTimestamp === "undefined") {
             if (typeof performance === "undefined") {
@@ -71,18 +70,18 @@ var InputWritr = (function () {
         this.isRecording = settings.hasOwnProperty("isRecording") ? settings.isRecording : true;
         this.history = {};
         this.histories = {
-            "length": 0
+            length: 0
         };
         this.aliases = {};
         this.addAliases(settings.aliases || {});
         this.keyAliasesToCodes = settings.keyAliasesToCodes || {
-            "shift": 16,
-            "ctrl": 17,
-            "space": 32,
-            "left": 37,
-            "up": 38,
-            "right": 39,
-            "down": 40
+            shift: 16,
+            ctrl: 17,
+            space: 32,
+            left: 37,
+            up: 38,
+            right: 39,
+            down: 40
         };
         this.keyCodesToAliases = settings.keyCodesToAliases || {
             "16": "shift",
@@ -109,9 +108,10 @@ var InputWritr = (function () {
         }
         this.history = {};
         this.startingTime = this.getTimestamp();
+        //console.log("restartHistory!", this.startingTime);
     };
     /* Simple gets
-    */
+     */
     /**
      * @return {Object} The stored mapping of aliases to values.
      */
@@ -203,7 +203,7 @@ var InputWritr = (function () {
         return this.isRecording;
     };
     /* Simple sets
-    */
+     */
     /**
      * @param {Mixed} canTriggerNew   Whether this is now allowing inputs. This
      *                                may be either a Function (to be evaluated
@@ -234,7 +234,7 @@ var InputWritr = (function () {
         this.eventInformation = eventInformationNew;
     };
     /* Aliases
-    */
+     */
     /**
      * Adds a list of values by which an event may be triggered.
      *
@@ -321,7 +321,7 @@ var InputWritr = (function () {
         }
     };
     /* Functions
-    */
+     */
     /**
      * Adds a triggerable event by marking a new callback under the trigger's
      * triggers. Any aliases for the label are also given the callback.
@@ -373,6 +373,8 @@ var InputWritr = (function () {
         if (name === void 0) { name = undefined; }
         this.histories[this.histories.length] = history;
         this.histories.length += 1;
+        console.log("name: ", name);
+        console.log(history);
         if (arguments.length) {
             this.histories[name] = history;
         }
@@ -479,7 +481,10 @@ var InputWritr = (function () {
             // If there's a function under that alias, run it
             if (functions.hasOwnProperty(alias)) {
                 if (InputWriter.isRecording) {
-                    InputWriter.history[InputWriter.getTimestamp() | 0] = [trigger, alias];
+                    InputWriter.history[InputWriter.getTimestamp() | 0] = [
+                        trigger,
+                        alias,
+                    ];
                 }
                 InputWriter.callEvent(functions[alias], alias, event);
             }

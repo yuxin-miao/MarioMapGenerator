@@ -155,6 +155,25 @@ var FullScreenMario = (function (GameStartr) {
     "©": "Copyright",
   };
 
+  // Dictionary for counting user behaviors
+  var behaviorDict = {
+    left: 0,
+    right: 0,
+    up: 0,
+    down: 0,
+    sprint: 0,
+    pause: 0,
+    jump: 0,
+    run: 0,
+    coin: 0,
+    walk: 0,
+    rightclick: 0,
+  };
+  function printDict() {
+    for (var key in behaviorDict) {
+      console.log(key, ": ", behaviorDict[key]);
+    }
+  }
   /* Resets
    */
 
@@ -268,7 +287,6 @@ var FullScreenMario = (function (GameStartr) {
    */
   function gameStart() {
     var EightBitter = EightBittr.prototype.ensureCorrectCaller(this);
-
     EightBitter.setMap(
       EightBitter.settings.maps.mapDefault,
       EightBitter.settings.maps.locationDefault
@@ -299,7 +317,9 @@ var FullScreenMario = (function (GameStartr) {
       textWidth,
       dx,
       i;
-
+    console.log("histories:");
+    var histories = EightBitter.InputWriter.getHistories();
+    console.log(histories, 12);
     EightBitter.killNPCs();
 
     EightBitter.AudioPlayer.clearAll();
@@ -475,6 +495,7 @@ var FullScreenMario = (function (GameStartr) {
    * bleep is played, and the mod event is fired.
    */
   function onGamePause(EightBitter) {
+    behaviorDict.pause += 1;
     EightBitter.AudioPlayer.pauseAll();
     EightBitter.AudioPlayer.play("Pause");
     EightBitter.ModAttacher.fireEvent("onGamePause");
@@ -502,7 +523,7 @@ var FullScreenMario = (function (GameStartr) {
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
-
+    behaviorDict.left += 1;
     player.keys.run = -1;
     player.keys.leftDown = true; // independent of changes to keys.run
     player.EightBitter.ModAttacher.fireEvent("onKeyDownLeft");
@@ -518,7 +539,7 @@ var FullScreenMario = (function (GameStartr) {
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
-
+    behaviorDict.right += 1;
     player.keys.run = 1;
     player.keys.rightDown = true; // independent of changes to keys.run
     player.EightBitter.ModAttacher.fireEvent("onKeyDownRight");
@@ -536,13 +557,15 @@ var FullScreenMario = (function (GameStartr) {
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
-
+    behaviorDict.up += 1;
     player.keys.up = true;
 
     if (
       player.canjump &&
       (player.resting || player.EightBitter.MapScreener.underwater)
     ) {
+      behaviorDict.jump += 1;
+      printDict();
       player.keys.jump = 1;
       player.canjump = player.keys.jumplev = 0;
 
@@ -574,7 +597,7 @@ var FullScreenMario = (function (GameStartr) {
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
-
+    behaviorDict.down += 1;
     player.keys.crouch = true;
     player.EightBitter.ModAttacher.fireEvent("onKeyDownDown");
 
@@ -591,7 +614,7 @@ var FullScreenMario = (function (GameStartr) {
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
-
+    behaviorDict.sprint += 1;
     if (player.power === 3 && player.keys.sprint === 0 && !player.crouch) {
       player.fire(player);
     }
@@ -1998,14 +2021,17 @@ var FullScreenMario = (function (GameStartr) {
 
     if (thing.throwing) {
       for (i = 0; i < thing.throwAmount; i += 1) {
-        thing.EightBitter.TimeHandler.addEvent(function () {
-          thing.EightBitter.TimeHandler.addEventInterval(
-            thing.EightBitter.animateBowserThrow,
-            thing.throwPeriod,
-            Infinity,
-            thing
-          );
-        }, thing.throwDelay + i * thing.throwBetween);
+        thing.EightBitter.TimeHandler.addEvent(
+          function () {
+            thing.EightBitter.TimeHandler.addEventInterval(
+              thing.EightBitter.animateBowserThrow,
+              thing.throwPeriod,
+              Infinity,
+              thing
+            );
+          },
+          thing.throwDelay + i * thing.throwBetween
+        );
       }
     }
   }
@@ -3840,9 +3866,12 @@ var FullScreenMario = (function (GameStartr) {
       keys.length
     );
 
-    thing.EightBitter.TimeHandler.addEvent(function () {
-      thing.EightBitter.collideLevelTransport(thing, other);
-    }, interval * keys.length + 280);
+    thing.EightBitter.TimeHandler.addEvent(
+      function () {
+        thing.EightBitter.collideLevelTransport(thing, other);
+      },
+      interval * keys.length + 280
+    );
   }
 
   /**
@@ -5346,10 +5375,13 @@ var FullScreenMario = (function (GameStartr) {
       cleartime
     );
 
-    thing.EightBitter.TimeHandler.addEvent(function () {
-      thing.flickering = thing.hidden = false;
-      thing.EightBitter.PixelDrawer.setThingSprite(thing);
-    }, cleartime * interval + 1);
+    thing.EightBitter.TimeHandler.addEvent(
+      function () {
+        thing.flickering = thing.hidden = false;
+        thing.EightBitter.PixelDrawer.setThingSprite(thing);
+      },
+      cleartime * interval + 1
+    );
   }
 
   /**
@@ -5852,15 +5884,18 @@ var FullScreenMario = (function (GameStartr) {
       );
     }
 
-    thing.EightBitter.TimeHandler.addEvent(function () {
-      thing.EightBitter.AudioPlayer.addEventImmediate(
-        "Stage Clear",
-        "ended",
-        function () {
-          thing.EightBitter.collideLevelTransport(thing, other);
-        }
-      );
-    }, i * fireInterval + 420);
+    thing.EightBitter.TimeHandler.addEvent(
+      function () {
+        thing.EightBitter.AudioPlayer.addEventImmediate(
+          "Stage Clear",
+          "ended",
+          function () {
+            thing.EightBitter.collideLevelTransport(thing, other);
+          }
+        );
+      },
+      i * fireInterval + 420
+    );
   }
 
   /**
@@ -6932,6 +6967,7 @@ var FullScreenMario = (function (GameStartr) {
     }
 
     EightBitter.StatsHolder.set("world", name);
+
     EightBitter.InputWriter.restartHistory();
 
     EightBitter.ModAttacher.fireEvent("onSetMap", map);
