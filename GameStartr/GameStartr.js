@@ -1,20 +1,20 @@
 /**
  * GameStartr.js
- * 
+ *
  * An abstract class used as a base for creating sprite-based 2D games. Utility
  * functions and an expansive skeleton are available for a child class to make
  * us of, particular with physics manipulations, graphics rendering, and reset
  * functions based around the 19 required modules.
- * 
+ *
  * Descendent classes of GameStartr must put their settings in their prototype
  * under settings. Reset Functions below list their required file names.
- * 
+ *
  * The following member attributes of child classes are required:
  * gameStart {Function}
  * onGamePlay {Function}
  * onGamePause {Function}
  * canInputsTrigger {Function}
- * setMap {Function} 
+ * setMap {Function}
  * setLocation {Function}
  */
 var GameStartr = (function (EightBittr) {
@@ -24,7 +24,7 @@ var GameStartr = (function (EightBittr) {
     var EightBitterProto = new EightBittr();
 
     /**
-     * 
+     *
      */
     function GameStartr(customs) {
         if (typeof customs === "undefined") {
@@ -34,7 +34,7 @@ var GameStartr = (function (EightBittr) {
         if (typeof this.settings === "undefined") {
             this.settings = {};
         }
-        
+
         EightBittr.call(this, {
             "customs": customs,
             "constantsSource": customs.constantsSource,
@@ -98,7 +98,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Resets the EightBittr by calling the parent EightBittr.prototype.reset.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      */
@@ -107,9 +107,9 @@ var GameStartr = (function (EightBittr) {
     };
 
     /**
-     * Resets the EightBittr and records the time by calling the parent 
+     * Resets the EightBittr and records the time by calling the parent
      * EightBittr.prototype.resetTimed.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @return {Array} How long each reset Function took followed by the entire
@@ -123,10 +123,10 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.ObjectMaker.
-     * 
+     *
      * Because many Thing functions require access to other FSM modules, each is
-     * given a reference to this container FSM via properties.Thing.EightBitter. 
-     * 
+     * given a reference to this container FSM via properties.Thing.EightBitter.
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): ObjectMakr (src/ObjectMakr/ObjectMakr.js)
@@ -147,7 +147,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.QuadsKeeper.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): QuadsKeepr (src/QuadsKeepr/QuadsKeepr.js)
@@ -171,7 +171,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.PixelRender.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): PixelRendr (src/PixelRendr/PixelRendr.js)
@@ -187,7 +187,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.PixelDrawer.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): PixelDrawr (src/PixelDrawr/PixelDrawr.js)
@@ -206,7 +206,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets EightBitter.TimeHandler.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): TimeHandlr (src/TimeHandlr/TimeHandlr.js)
@@ -221,7 +221,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.AudioPlayer.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): AudioPlayr (src/AudioPlayr/AudioPlayr.js)
@@ -237,7 +237,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.GamesRunner.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): GamesRunnr (src/GamesRunnr/GamesRunnr.js)
@@ -253,7 +253,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.StatsHolder.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): StatsHoldr (src/StatsHoldr/StatsHoldr.js)
@@ -269,7 +269,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.GroupHolder.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): GroupHoldr (src/ThingHittr/GroupHoldr.js)
@@ -281,7 +281,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.ThingHitter.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): ThingHittr (src/ThingHittr/ThingHittr.js)
@@ -295,7 +295,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.MapScreener.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): MapScreenr (src/MapScreenr/MapScreenr.js)
@@ -314,7 +314,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.NumberMaker.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): NumberMaker (src/NumberMakr/NumberMakr.js)
@@ -325,7 +325,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.MapCreator.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @remarks Requirement(s): MapCreatr (src/MapCreatr/MapCreatr.js)
      *                          maps.js (settings/maps.js)
@@ -343,7 +343,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.MapsHandler.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): MapsHandlr (src/MapsHandlr/MapsHandlr.js)
@@ -360,7 +360,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.InputWriter.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): InputWritr (src/InputWritr/InputWritr.js)
@@ -374,7 +374,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.LevelEditor.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): LevelEditr (src/LevelEditr/LevelEditr.js)
@@ -389,7 +389,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.WorldSeeder.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): WorldSeedr (src/WorldSeedr/WorldSeedr.js)
@@ -404,7 +404,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets self.ModAttacher.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      * @remarks Requirement(s): ModAttachr (src/ModAttachr/ModAttachr.js)
@@ -416,10 +416,10 @@ var GameStartr = (function (EightBittr) {
         }, EightBitter.settings.mods));
     }
 
-    /** 
+    /**
      * Starts self.ModAttacher. All mods are enabled, and the "onReady" trigger
      * is fired.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      */
@@ -439,9 +439,9 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Resets the parent HTML container. Width and height are set by customs, 
+     * Resets the parent HTML container. Width and height are set by customs,
      * and canvas and StatsHolder container elements are added.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {Object} [customs]
      */
@@ -468,7 +468,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Scrolls the game window by shifting all Things and checking for quadrant
      * refreshes.
-     * 
+     *
      * @this {EightBittr}
      * @param {Number} dx   How far to scroll horizontally.
      * @param {Number} [dy]   How far to scroll vertically.
@@ -491,8 +491,8 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Scrolls everything but a single Thing.
-     * 
-     * 
+     *
+     *
      * @this {EightBittr}
      * @param {Thing} thing
      * @param {Number} dx   How far to scroll horizontally.
@@ -508,8 +508,8 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Spawns all Things within a given area that should be there. 
-     * 
+     * Spawns all Things within a given area that should be there.
+     *
      * @param {EightBittr} EightBitter
      * @param {String} direction
      * @param {Number} top
@@ -531,7 +531,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * "Unspawns" all Things within a given area that should be gone by marking
      * their PreThings as not in game.
-     * 
+     *
      * @param {EightBittr} EightBitter
      * @param {String} direction
      * @param {Number} top
@@ -552,8 +552,8 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Adds a new Thing to the game at a given position, relative to the top
-     * left corner of the screen. 
-     * 
+     * left corner of the screen.
+     *
      * @param {Mixed} thing   What type of Thing to add. This may be a String of
      *                        the class title, an Array containing the String
      *                        and an Object of settings, or an actual Thing.
@@ -599,13 +599,13 @@ var GameStartr = (function (EightBittr) {
     /**
      * Processes a Thing so that it is ready to be placed in gameplay. There are
      * a lot of steps here: width and height must be set with defaults and given
-     * to spritewidth and spriteheight, a quadrants Array must be given, the 
+     * to spritewidth and spriteheight, a quadrants Array must be given, the
      * sprite must be set, attributes and onThingMake called upon, and initial
      * class cycles and flipping set.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} type   What type Thing this is (the name of the class).
-     * @param {Object} [settings]   Additional settings to be given to the 
+     * @param {Object} [settings]   Additional settings to be given to the
      *                              Thing.
      * @param {Object} defaults   The default settings for the Thing's class.
      * @remarks This is generally called as the onMake call in an ObjectMakr.
@@ -698,7 +698,7 @@ var GameStartr = (function (EightBittr) {
             );
         }
 
-        // flipHoriz and flipVert initially 
+        // flipHoriz and flipVert initially
         if (thing.flipHoriz) {
             thing.EightBitter.flipHoriz(thing);
         }
@@ -716,7 +716,7 @@ var GameStartr = (function (EightBittr) {
      * Processes additional Thing attributes. For each attribute the Thing's
      * class says it may have, if it has it, the attribute's key is appeneded to
      * the Thing's name and the attribute value proliferated onto the Thing.
-     * 
+     *
      * @param {Thing} thing
      * @param {Object} attributes
      */
@@ -729,7 +729,7 @@ var GameStartr = (function (EightBittr) {
             if (thing[attribute]) {
                 // Add the extra options
                 thing.EightBitter.proliferate(thing, attributes[attribute]);
-                
+
                 // Also add a marking to the name, which will go into the className
                 if (thing.name) {
                     thing.name += ' ' + attribute;
@@ -741,14 +741,18 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Runs through commands generated by a WorldSeedr and evaluates all of 
-     * to create PreThings via MapsCreator.analyzePreSwitch. 
-     * 
+     * Runs through commands generated by a WorldSeedr and evaluates all of
+     * to create PreThings via MapsCreator.analyzePreSwitch.
+     *
      * @param {EightBittr} EightBitter
      * @param {Object[]} generatedCommands   The commands generated by a
      *                                       WorldSeedr.generateFull call.
      */
     function mapPlaceRandomCommands(EightBitter, generatedCommands) {
+      const key = new Date()
+      localStorage.setItem(key.toISOString(), JSON.stringify(generatedCommands))
+      console.log(JSON.stringify(generatedCommands))
+
         var MapsCreator = EightBitter.MapsCreator,
             MapsHandler = EightBitter.MapsHandler,
             prethings = MapsHandler.getPreThings(),
@@ -777,10 +781,10 @@ var GameStartr = (function (EightBittr) {
     /* Physics & similar
     */
 
-    /** 
+    /**
      * Sets a Thing's "changed" flag to true, which indicates to the PixelDrawr
      * to redraw the Thing and its quadrant.
-     * 
+     *
      * @param {Thing} thing
      */
     function markChanged(thing) {
@@ -790,7 +794,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Shifts a Thing vertically using the EightBittr utility, and marks the
      * Thing as having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dy
      * @param {Boolean} [notChanged]   Whether to skip marking the Thing as
@@ -807,7 +811,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Shifts a Thing horizontally using the EightBittr utility, and marks the
      * Thing as having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dx
      * @param {Boolean} [notChanged]   Whether to skip marking the Thing as
@@ -824,7 +828,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Sets a Thing's top using the EightBittr utility, and marks the Thing as
      * having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} top
      */
@@ -836,7 +840,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Sets a Thing's right using the EightBittr utility, and marks the Thing as
      * having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} right
      */
@@ -848,7 +852,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Sets a Thing's bottom using the EightBittr utility, and marks the Thing
      * as having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} bottom
      */
@@ -860,7 +864,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Sets a Thing's left using the EightBittr utility, and marks the Thing
      * as having a changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} left
      */
@@ -870,10 +874,10 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Shifts a thing both horizontally and vertically. If the Thing marks 
+     * Shifts a thing both horizontally and vertically. If the Thing marks
      * itself as having a parallax effect (parallaxHoriz or parallaxVert), that
      * proportion of movement is respected (.5 = half, etc.).
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dx
      * @param {Number} dy
@@ -907,7 +911,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Calls shiftBoth on all members of an Array.
-     * 
+     *
      * @param {Number} dx
      * @param {Number} dy
      * @param {Boolean} [notChanged]   Whether to skip marking the Thing as
@@ -921,7 +925,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Calls shiftBoth on all groups in the calling EightBittr's GroupHoldr.
-     * 
+     *
      * @this {EightBittr}
      * @param {Number} dx
      * @param {Number} dy
@@ -937,7 +941,7 @@ var GameStartr = (function (EightBittr) {
      * Sets the width and unitwidth of a Thing, and optionally updates the
      * Thing's spritewidth and spritewidth pixels, and/or calls updateSize.
      * The thing is marked as having changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} width
      * @param {Boolean} [updateSprite]   Whether to update the Thing's
@@ -966,7 +970,7 @@ var GameStartr = (function (EightBittr) {
      * Sets the height and unitheight of a Thing, and optionally updates the
      * Thing's spriteheight and spriteheight pixels, and/or calls updateSize.
      * The thing is marked as having changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} height
      * @param {Boolean} [updateSprite]   Whether to update the Thing's
@@ -993,12 +997,12 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Utility to call both setWidth and setHeight on a Thing.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} width
      * @param {Number} height
      * @param {Boolean} [updateSprite]   Whether to update the Thing's
-     *                                   spritewidth, spriteheight, 
+     *                                   spritewidth, spriteheight,
      *                                   spritewidthpixels, and
      *                                   spritspriteheightpixels (by default,
      *                                   false).
@@ -1013,7 +1017,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Shifts a Thing horizontally by its xvel and vertically by its yvel, using
      * shiftHoriz and shiftVert.
-     * 
+     *
      * @param {Thing} thing
      */
     function updatePosition(thing) {
@@ -1026,7 +1030,7 @@ var GameStartr = (function (EightBittr) {
      * unitwidth, unitheight, spritewidthpixels, spriteheightpixels, and
      * spriteheightpixels attributes. The Thing's sprite is then updated by the
      * PixelDrawer, and its appearance is marked as changed.
-     * 
+     *
      * @param {Thing} thing
      */
     function updateSize(thing) {
@@ -1043,12 +1047,12 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Reduces a Thing's width by pushing back its right and decreasing its 
+     * Reduces a Thing's width by pushing back its right and decreasing its
      * width. It is marked as changed in appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dx
-     * @param {Boolean} [updateSize]   Whether to also call updateSize on the 
+     * @param {Boolean} [updateSize]   Whether to also call updateSize on the
      *                                 Thing (by default, false).
      */
     function reduceWidth(thing, dx, see) {
@@ -1063,12 +1067,12 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Reduces a Thing's height by pushing down its top and decreasing its 
+     * Reduces a Thing's height by pushing down its top and decreasing its
      * height. It is marked as changed in appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dy
-     * @param {Boolean} [updateSize]   Whether to also call updateSize on the 
+     * @param {Boolean} [updateSize]   Whether to also call updateSize on the
      *                                 Thing (by default, false).
      */
     function reduceHeight(thing, dy, updateSize) {
@@ -1083,12 +1087,12 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Reduces a Thing's height by pushing down its top and decreasing its 
+     * Reduces a Thing's height by pushing down its top and decreasing its
      * height. It is marked as changed in appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dy
-     * @param {Boolean} [updateSize]   Whether to also call updateSize on the 
+     * @param {Boolean} [updateSize]   Whether to also call updateSize on the
      *                                 Thing (by default, false).
      */
     function increaseHeight(thing, dy) {
@@ -1099,12 +1103,12 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Increases a Thing's width by pushing forward its right and decreasing its 
+     * Increases a Thing's width by pushing forward its right and decreasing its
      * width. It is marked as changed in appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} dx
-     * @param {Boolean} [updateSize]   Whether to also call updateSize on the 
+     * @param {Boolean} [updateSize]   Whether to also call updateSize on the
      *                                 Thing (by default, false).
      */
     function increaseWidth(thing, dx) {
@@ -1118,7 +1122,7 @@ var GameStartr = (function (EightBittr) {
      * Completely pauses a Thing by setting its velocities to zero and disabling
      * it from falling, colliding, or moving. Its old attributes for those are
      * saved so thingResumeVelocity may restore them.
-     * 
+     *
      * @param {Thing} thing
      * @param {Boolean} [keepMovement]   Whether to keep movement instead of
      *                                   wiping it (by default, false).
@@ -1142,7 +1146,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Resumes a Thing's velocity and movements after they were paused by
      * thingPauseVelocity.
-     * 
+     *
      * @param {Thing} thing
      * @param {Boolean} [noVelocity]   Whether to skip restoring the Thing's
      *                                 velocity (by default, false).
@@ -1166,7 +1170,7 @@ var GameStartr = (function (EightBittr) {
      * Generates a key for a Thing based off the current area and the Thing's
      * basic attributes. This key should be used for PixelRender.get calls, to
      * cache the Thing's sprite.
-     * 
+     *
      * @param {Thing} thing
      * @return {String} A key that to identify the Thing's sprite.
      */
@@ -1177,10 +1181,10 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Sets the class of a Thing, sets the new sprite for it, and marks it as 
+     * Sets the class of a Thing, sets the new sprite for it, and marks it as
      * having changed appearance. The class is stored in the Thing's internal
      * .className attribute.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} string   The new internal .className for the Thing.
      */
@@ -1193,7 +1197,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * A version of setClass to be used before the Thing's sprite attributes
      * have been set. This just sets the internal .className.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} string
      */
@@ -1202,9 +1206,9 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Adds a string to a Thing's class after a ' ', updates the Thing's 
+     * Adds a string to a Thing's class after a ' ', updates the Thing's
      * sprite, and marks it as having changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} string
      */
@@ -1215,11 +1219,11 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Adds multiple strings to a Thing's class after a ' ', updates the Thing's 
-     * sprite, and marks it as having changed appearance. Strings may be given 
-     * as Arrays or Strings; Strings will be split on ' '. Any number of 
+     * Adds multiple strings to a Thing's class after a ' ', updates the Thing's
+     * sprite, and marks it as having changed appearance. Strings may be given
+     * as Arrays or Strings; Strings will be split on ' '. Any number of
      * additional arguments may be given.
-     * 
+     *
      * @param {Thing} thing
      * @param {Mixed} string
      */
@@ -1241,7 +1245,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Removes a string from a Thing's class, updates the Thing's sprite, and
      * marks it as having changed appearance.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} string
      */
@@ -1257,11 +1261,11 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * Removes multiple strings from a Thing's class, updates the Thing's 
-     * sprite, and marks it as having changed appearance. Strings may be given 
-     * as Arrays or Strings; Strings will be split on ' '. Any number of 
+     * Removes multiple strings from a Thing's class, updates the Thing's
+     * sprite, and marks it as having changed appearance. Strings may be given
+     * as Arrays or Strings; Strings will be split on ' '. Any number of
      * additional arguments may be given.
-     * 
+     *
      * @param {Thing} thing
      * @param {Mixed} string
      */
@@ -1291,7 +1295,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Removes the first class from a Thing and adds the second. All typical
      * sprite updates are called.
-     * 
+     *
      * @param {Thing} thing
      * @param {String} stringOut
      * @param {String} stringIn
@@ -1304,7 +1308,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Marks a Thing as being flipped horizontally by setting its .flipHoriz
      * attribute to true and giving it a "flipped" class.
-     * 
+     *
      * @param {Thing}
      */
     function flipHoriz(thing) {
@@ -1315,7 +1319,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Marks a Thing as being flipped vertically by setting its .flipVert
      * attribute to true and giving it a "flipped" class.
-     * 
+     *
      * @param {Thing}
      */
     function flipVert(thing) {
@@ -1326,7 +1330,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Marks a Thing as not being flipped horizontally by setting its .flipHoriz
      * attribute to false and giving it a "flipped" class.
-     * 
+     *
      * @param {Thing}
      */
     function unflipHoriz(thing) {
@@ -1337,7 +1341,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Marks a Thing as not being flipped vertically by setting its .flipVert
      * attribute to true and giving it a "flipped" class.
-     * 
+     *
      * @param {Thing}
      */
     function unflipVert(thing) {
@@ -1347,7 +1351,7 @@ var GameStartr = (function (EightBittr) {
 
     /**
      * Sets the opacity of the Thing and marks its appearance as changed.
-     * 
+     *
      * @param {Thing} thing
      * @param {Number} opacity   A number in [0,1].
      */
@@ -1361,9 +1365,9 @@ var GameStartr = (function (EightBittr) {
     */
 
     /**
-     * Removes a Thing from an Array using Array.splice. If the thing has an 
+     * Removes a Thing from an Array using Array.splice. If the thing has an
      * onDelete, that is called.
-     * 
+     *
      * @param {Thing} thing
      * @param {Array} array
      * @param {Number} [location]   The index of the Thing in the Array, for
@@ -1388,7 +1392,7 @@ var GameStartr = (function (EightBittr) {
     /**
      * Takes a snapshot of the current screen canvas by simulating a click event
      * on a dummy link.
-     * 
+     *
      * @param {String} [name]   A name for the image to be saved as (by default,
      *                          "FullScreenMario Screenshot").
      * @param {String} [format]   A format for the image to be saved as (by
@@ -1411,7 +1415,7 @@ var GameStartr = (function (EightBittr) {
     }
 
     /**
-     * 
+     *
      */
     function addPageStyles(styles) {
         var EightBitter =  EightBittr.prototype.ensureCorrectCaller(this),
