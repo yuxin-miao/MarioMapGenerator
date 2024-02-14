@@ -165,9 +165,23 @@ var FullScreenMario = (function (GameStartr) {
     pause: 0,
     jump: 0,
     run: 0,
-    coin: 0,
     walk: 0,
     rightclick: 0,
+    kill: {
+      koopa: 0,
+      goomba: 0,
+      beetle: 0,
+      brick: 0,
+    },
+    firework: 0,
+    collisions: {
+      addLife: 0,
+      playerBigger: 0,
+      playerSmaller: 0,
+      coin: 0,
+      star: 0,
+
+    }
   };
   function printDict() {
     for (var key in behaviorDict) {
@@ -381,9 +395,9 @@ var FullScreenMario = (function (GameStartr) {
     thing.EightBitter.addThing(
       thing,
       prething.left * thing.EightBitter.unitsize -
-        thing.EightBitter.MapScreener.left,
+      thing.EightBitter.MapScreener.left,
       (thing.EightBitter.MapScreener.floor - prething.top) *
-        thing.EightBitter.unitsize
+      thing.EightBitter.unitsize
     );
 
     // Either the prething or thing, in that order, may request to be in the
@@ -1479,6 +1493,7 @@ var FullScreenMario = (function (GameStartr) {
    *                              default, false).
    */
   function gainLife(amount, nosound) {
+    behaviorDict.collisions.addLife += 1;
     var EightBitter = EightBittr.prototype.ensureCorrectCaller(this);
 
     amount = Number(amount) || 1;
@@ -1721,6 +1736,7 @@ var FullScreenMario = (function (GameStartr) {
    *                                  default, false).
    */
   function playerGetsBig(thing, noAnimation) {
+    behaviorDict.collisions.playerSmaller += 1;
     thing.keys.down = 0;
     thing.EightBitter.setPlayerSizeLarge(thing);
     thing.EightBitter.removeClasses(thing, "crouching small");
@@ -1744,14 +1760,14 @@ var FullScreenMario = (function (GameStartr) {
    */
   function playerGetsBigAnimation(thing) {
     var stages = [
-        "shrooming1",
-        "shrooming2",
-        "shrooming1",
-        "shrooming2",
-        "shrooming3",
-        "shrooming2",
-        "shrooming3",
-      ],
+      "shrooming1",
+      "shrooming2",
+      "shrooming1",
+      "shrooming2",
+      "shrooming3",
+      "shrooming2",
+      "shrooming3",
+    ],
       i;
 
     thing.EightBitter.addClass(thing, "shrooming");
@@ -1781,6 +1797,7 @@ var FullScreenMario = (function (GameStartr) {
    */
   function playerGetsSmall(thing) {
     var bottom = thing.bottom;
+    behaviorDict.collisions.playerSmaller += 1;
 
     thing.keys.down = 0;
     thing.EightBitter.thingPauseVelocity(thing);
@@ -2271,8 +2288,8 @@ var FullScreenMario = (function (GameStartr) {
           EightBitter.MapScreener.floor
         ) / 8
       ) *
-        8 *
-        EightBitter.unitsize
+      8 *
+      EightBitter.unitsize
     );
   }
 
@@ -3053,11 +3070,12 @@ var FullScreenMario = (function (GameStartr) {
     if (!thing.player) {
       return;
     }
-
+    behaviorDict.collisions.coin += 1;
     thing.EightBitter.AudioPlayer.play("Coin");
     thing.EightBitter.StatsHolder.increase("score", 200);
     thing.EightBitter.StatsHolder.increase("coins", 1);
     thing.EightBitter.killNormal(other);
+
   }
 
   /**
@@ -3071,7 +3089,7 @@ var FullScreenMario = (function (GameStartr) {
     if (!thing.player || thing.star) {
       return;
     }
-
+    behaviorDict.collisions.star += 1;
     thing.EightBitter.playerStarUp(thing);
     thing.EightBitter.ModAttacher.fireEvent("onCollideStar", thing, other);
   }
@@ -4378,7 +4396,7 @@ var FullScreenMario = (function (GameStartr) {
       thing.partners.partnerString,
       Math.max(
         thing.partners.partnerString.height -
-          thing.yvel / thing.EightBitter.unitsize,
+        thing.yvel / thing.EightBitter.unitsize,
         0
       )
     );
@@ -5297,6 +5315,7 @@ var FullScreenMario = (function (GameStartr) {
 
     thing.EightBitter.AudioPlayer.play("Coin");
     thing.EightBitter.StatsHolder.increase("coins", 1);
+    behaviorDict.coin += 1;
     thing.EightBitter.StatsHolder.increase("score", 200);
 
     thing.EightBitter.TimeHandler.cancelClassCycle(thing, 0);
@@ -5528,8 +5547,8 @@ var FullScreenMario = (function (GameStartr) {
       ylev = Math.max(
         -thing.height * unitsize,
         Math.round(thing.EightBitter.player.bottom / (unitsize * 8)) *
-          unitsize *
-          8
+        unitsize *
+        8
       );
 
     if (!thing.EightBitter.isThingAlive(thing)) {
@@ -5648,8 +5667,8 @@ var FullScreenMario = (function (GameStartr) {
     // Jump up?
     if (
       thing.EightBitter.MapScreener.floor -
-        thing.bottom / thing.EightBitter.unitsize >=
-        30 &&
+      thing.bottom / thing.EightBitter.unitsize >=
+      30 &&
       thing.resting.title !== "Floor" &&
       thing.EightBitter.NumberMaker.randomBoolean()
     ) {
@@ -5784,7 +5803,7 @@ var FullScreenMario = (function (GameStartr) {
     if (big === 2) {
       return;
     }
-
+    behaviorDict.firework += 1;
     var output = thing.EightBitter.addThing("Firework");
     thing.EightBitter.setMidXObj(output, thing);
     thing.EightBitter.setMidYObj(output, thing);
@@ -5913,9 +5932,9 @@ var FullScreenMario = (function (GameStartr) {
     // Don't fire if Player is too close
     if (
       thing.EightBitter.player.right >
-        thing.left - thing.EightBitter.unitsize * 8 &&
+      thing.left - thing.EightBitter.unitsize * 8 &&
       thing.EightBitter.player.left <
-        thing.right + thing.EightBitter.unitsize * 8
+      thing.right + thing.EightBitter.unitsize * 8
     ) {
       return;
     }
@@ -5948,13 +5967,13 @@ var FullScreenMario = (function (GameStartr) {
     }
 
     var ball = thing.EightBitter.ObjectMaker.make("Fireball", {
-        moveleft: thing.moveleft,
-        speed: thing.EightBitter.unitsize * 1.75,
-        jumpheight: thing.EightBitter.unitsize * 1.56,
-        gravity: thing.EightBitter.MapScreener.gravity * 1.56,
-        yvel: thing.EightBitter.unitsize,
-        movement: thing.EightBitter.moveJumping,
-      }),
+      moveleft: thing.moveleft,
+      speed: thing.EightBitter.unitsize * 1.75,
+      jumpheight: thing.EightBitter.unitsize * 1.56,
+      gravity: thing.EightBitter.MapScreener.gravity * 1.56,
+      yvel: thing.EightBitter.unitsize,
+      movement: thing.EightBitter.moveJumping,
+    }),
       xloc = thing.moveleft
         ? thing.left - thing.EightBitter.unitsize / 4
         : thing.right + thing.EightBitter.unitsize / 4;
@@ -6451,7 +6470,7 @@ var FullScreenMario = (function (GameStartr) {
       thing.EightBitter.killFlip(thing);
       return;
     }
-
+    behaviorDict.kill.goomba += 1;
     thing.EightBitter.killSpawn(thing);
   }
 
@@ -6466,7 +6485,7 @@ var FullScreenMario = (function (GameStartr) {
    */
   function killKoopa(thing, big) {
     var spawn;
-
+    behaviorDict.kill.koopa += 1;
     if (thing.jumping || thing.floating) {
       spawn = thing.EightBitter.killReplace(thing, "Koopa", undefined, [
         "smart",
@@ -6610,6 +6629,7 @@ var FullScreenMario = (function (GameStartr) {
    *                          Brick's death (its up attribute).
    */
   function killBrick(thing, other) {
+    behaviorDict.kill.brick += 1;
     thing.EightBitter.AudioPlayer.play("Break Block");
     thing.EightBitter.TimeHandler.addEvent(
       thing.EightBitter.animateBrickShards,
@@ -6922,7 +6942,7 @@ var FullScreenMario = (function (GameStartr) {
         0.84,
         (EightBitter.MapScreener.width -
           Math.abs(xloc - EightBitter.player.left)) /
-          EightBitter.MapScreener.width
+        EightBitter.MapScreener.width
       )
     );
   }
@@ -6974,8 +6994,8 @@ var FullScreenMario = (function (GameStartr) {
 
     EightBitter.setLocation(
       location ||
-        map.locationDefault ||
-        EightBitter.settings.maps.locationDefault
+      map.locationDefault ||
+      EightBitter.settings.maps.locationDefault
     );
   }
 
@@ -7116,10 +7136,10 @@ var FullScreenMario = (function (GameStartr) {
    */
   function mapEntranceVine(EightBitter) {
     var vine = EightBitter.addThing(
-        "Vine",
-        EightBitter.unitsize * 32,
-        EightBitter.MapScreener.bottom + EightBitter.unitsize * 8
-      ),
+      "Vine",
+      EightBitter.unitsize * 32,
+      EightBitter.MapScreener.bottom + EightBitter.unitsize * 8
+    ),
       threshold = EightBitter.MapScreener.bottom - EightBitter.unitsize * 40;
 
     EightBitter.TimeHandler.addEventInterval(
@@ -7188,7 +7208,7 @@ var FullScreenMario = (function (GameStartr) {
 
     EightBitter.addPlayer(
       location.entrance.left +
-        (EightBitter.player.width * EightBitter.unitsize) / 2,
+      (EightBitter.player.width * EightBitter.unitsize) / 2,
       location.entrance.top + EightBitter.player.height * EightBitter.unitsize
     );
 

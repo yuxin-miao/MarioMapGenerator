@@ -1,114 +1,354 @@
 <!DOCTYPE HTML>
 <html lang="en-us">
-    <head>
-        <meta charset="utf-8" />
-        <title>Full Screen Mario</title>
-        <meta name="keywords" content="fullscreenmario, full, screen, mario, javascript, html5, gaming, online, online game, fun, distraction" />
-        <meta name="description" content="FullScreenMario is a free HTML5 remake of Nintendo's original Super Mario Bros. Play it here!" />
 
-        <!-- build:css index.min.css -->
-        <link href="index.css" rel="stylesheet" />
-        <!-- /build -->
+<head>
+    <meta charset="utf-8" />
+    <title>Full Screen Mario</title>
+    <meta name="keywords"
+        content="fullscreenmario, full, screen, mario, javascript, html5, gaming, online, online game, fun, distraction" />
+    <meta name="description"
+        content="FullScreenMario is a free HTML5 remake of Nintendo's original Super Mario Bros. Play it here!" />
 
-        <link rel="shortcut icon" href="Theme/Mario.gif">
-    </head>
+    <!-- build:css index.min.css -->
+    <link href="index.css" rel="stylesheet" />
+    <!-- /build -->
 
-    <body>
-        <header>
-            <img src="Theme/Header.gif" alt="FullScreenMario.com" />
-            <div id="header-right">
-                <a class="hoverable" target="_blank" href="https://twitter.com/FullScreenMario">
-                    <img id="twitter" src="Theme/Twitter.png" alt="Twitter" />
-                </a>
-                <a class="hoverable" target="_blank" href="https://github.com/FullScreenShenanigans/FullScreenMario">
-                    <img id="github" src="Theme/Github.png" alt="Github" />
-                </a>
-                <a class="hoverable" target="_blank" href="https://facebook.com/FullScreenMario">
-                    <img id="facebook" src="Theme/Facebook.png" alt="Facebook" />
-                </a>
-            </div>
-        </header>
+    <link rel="shortcut icon" href="Theme/Mario.gif">
+</head>
 
-        <section id="game">
-            <!-- FSM.UserWrapper will fill out this section... -->
-        </section>
-
-        <section id="controls">
-            <!-- FSM.UserWrapper will fill out this section... -->
-        </section>
-
-        <section id="explanation" class="section-text">
-            FullScreenMario is a free HTML5 remake of Nintendo's original Super Mario Bros.
-            It includes the original 32 levels, a random map generator, a <!-- social --> level editor, and over a dozen custom mods.
-        </section>
-
-        <section id="social" class="section-text">
-            You may <a class="link-github" href="http://www.github.com/FullScreenShenanigans/FullScreenMario">download the game for yourself</a> from GitHub, the location of Full Screen Mario's open source project.
-            Be sure to get the latest news on our <a class="link-facebook" href="http://www.facebook.com/FullScreenMario">Facebook</a> and <a class="link-twitter" href="http://www.twitter.com/FullScreenMario">Twitter</a> too!
-        </section>
-
-        <section id="credits" class="section-text">
-            FullScreenMario was made possible first and foremost by Nintendo, who originally created Mario and has since maintained the series.
-            It would also not have been possible without the dedicated efforts of the Mario fan community over the past three decades, in particular <a href="http://www.themushroomkingdom.net/">themushroomkingdom.net</a>.
-        </section>
-
-        <section id="hangar96" class="section-text">
-            <a href="http://marathon.sourceforge.net" alt="Escape will make me god.">
-                <img class="hoverable" src="Theme/Aleph One.png" />
+<body>
+    <header>
+        <img src="Theme/Header.gif" alt="FullScreenMario.com" />
+        <div id="header-right">
+            <a class="hoverable" target="_blank" href="https://twitter.com/FullScreenMario">
+                <img id="twitter" src="Theme/Twitter.png" alt="Twitter" />
             </a>
-        </section>
+            <a class="hoverable" target="_blank" href="https://github.com/FullScreenShenanigans/FullScreenMario">
+                <img id="github" src="Theme/Github.png" alt="Github" />
+            </a>
+            <a class="hoverable" target="_blank" href="https://facebook.com/FullScreenMario">
+                <img id="facebook" src="Theme/Facebook.png" alt="Facebook" />
+            </a>
+        </div>
+    </header>
 
-        <section id="legal" class="section-text">
-            <small><em>Mario, Super Mario Brothers, and all associated games and media are property of Nintendo and/or Nintendo of America Inc., and are protected by United States and international copyright, trademark and other intellectual property laws.</em></small>
-        </section>
+    <section id="game">
+        <!-- FSM.UserWrapper will fill out this section... -->
+    </section>
 
-        <!-- build:js FullScreenMario.min.js -->
-        <script src="GameStartr/EightBittr/EightBittr.js"></script>
-        <script src="GameStartr/GameStartr.js"></script>
-        <script src="GameStartr/AudioPlayr/AudioPlayr.js"></script>
-        <script src="GameStartr/ChangeLinr/ChangeLinr.js"></script>
-        <script src="GameStartr/FPSAnalyzr/FPSAnalyzr.js"></script>
-        <script src="GameStartr/GamesRunnr/GamesRunnr.js"></script>
-        <script src="GameStartr/GroupHoldr/GroupHoldr.js"></script>
-        <script src="GameStartr/InputWritr/InputWritr.js"></script>
-        <script src="GameStartr/LevelEditr/LevelEditr.js"></script>
-        <script src="GameStartr/LevelEditr/beautify.js"></script>
-        <script src="GameStartr/NumberMakr/NumberMakr.js"></script>
-        <script src="GameStartr/MapsCreatr/MapsCreatr.js"></script>
-        <script src="GameStartr/MapScreenr/MapScreenr.js"></script>
-        <script src="GameStartr/MapsHandlr/MapsHandlr.js"></script>
-        <script src="GameStartr/ModAttachr/ModAttachr.js"></script>
-        <script src="GameStartr/PixelDrawr/PixelDrawr.js"></script>
-        <script src="GameStartr/PixelRendr/PixelRendr.js"></script>
-        <script src="GameStartr/ObjectMakr/ObjectMakr.js"></script>
-        <script src="GameStartr/StatsHoldr/StatsHoldr.js"></script>
-        <script src="GameStartr/StringFilr/StringFilr.js"></script>
-        <script src="GameStartr/ThingHittr/ThingHittr.js"></script>
-        <script src="GameStartr/TimeHandlr/TimeHandlr.js"></script>
-        <script src="GameStartr/QuadsKeepr/QuadsKeepr.js"></script>
-        <script src="GameStartr/UserWrappr/UserWrappr.js"></script>
-        <script src="GameStartr/WorldSeedr/WorldSeedr.js"></script>
-        <script src="FullScreenMario.js"></script>
-        <script src="settings/audio.js"></script>
-        <script src="settings/collisions.js"></script>
-        <script src="settings/editor.js"></script>
-        <script src="settings/generator.js"></script>
-        <script src="settings/groups.js"></script>
-        <script src="settings/events.js"></script>
-        <script src="settings/input.js"></script>
-        <script src="settings/maps.js"></script>
-        <script src="settings/mods.js"></script>
-        <script src="settings/objects.js"></script>
-        <script src="settings/quadrants.js"></script>
-        <script src="settings/renderer.js"></script>
-        <script src="settings/runner.js"></script>
-        <script src="settings/sprites.js"></script>
-        <script src="settings/statistics.js"></script>
-        <script src="settings/ui.js"></script>
-        <!-- /build -->
+    <section id="controls">
+        <!-- FSM.UserWrapper will fill out this section... -->
+    </section>
 
-        <!-- build:js index.min.js -->
-        <script src="index.js"></script>
-        <!-- /build -->
-    </body>
+    <section id="explanation" class="section-text">
+        FullScreenMario is a free HTML5 remake of Nintendo's original Super Mario Bros.
+        It includes the original 32 levels, a random map generator, a <!-- social --> level editor, and over a dozen
+        custom mods.
+    </section>
+
+    <section id="social" class="section-text">
+        You may <a class="link-github" href="http://www.github.com/FullScreenShenanigans/FullScreenMario">download the
+            game for yourself</a> from GitHub, the location of Full Screen Mario's open source project.
+        Be sure to get the latest news on our <a class="link-facebook"
+            href="http://www.facebook.com/FullScreenMario">Facebook</a> and <a class="link-twitter"
+            href="http://www.twitter.com/FullScreenMario">Twitter</a> too!
+    </section>
+
+    <section id="credits" class="section-text">
+        FullScreenMario was made possible first and foremost by Nintendo, who originally created Mario and has since
+        maintained the series.
+        It would also not have been possible without the dedicated efforts of the Mario fan community over the past
+        three decades, in particular <a href="http://www.themushroomkingdom.net/">themushroomkingdom.net</a>.
+    </section>
+
+    <section id="hangar96" class="section-text">
+        <a href="http://marathon.sourceforge.net" alt="Escape will make me god.">
+            <img class="hoverable" src="Theme/Aleph One.png" />
+        </a>
+    </section>
+
+    <section id="legal" class="section-text">
+        <small><em>Mario, Super Mario Brothers, and all associated games and media are property of Nintendo and/or
+                Nintendo of America Inc., and are protected by United States and international copyright, trademark and
+                other intellectual property laws.</em></small>
+    </section>
+
+    <!-- build:js FullScreenMario.min.js -->
+    <script src="GameStartr/proj/generateMaps.js"></script>
+    <script src="GameStartr/EightBittr/EightBittr.js"></script>
+    <script src="GameStartr/GameStartr.js"></script>
+    <script src="GameStartr/AudioPlayr/AudioPlayr.js"></script>
+    <script src="GameStartr/ChangeLinr/ChangeLinr.js"></script>
+    <script src="GameStartr/FPSAnalyzr/FPSAnalyzr.js"></script>
+    <script src="GameStartr/GamesRunnr/GamesRunnr.js"></script>
+    <script src="GameStartr/GroupHoldr/GroupHoldr.js"></script>
+    <script src="GameStartr/InputWritr/InputWritr.js"></script>
+    <script src="GameStartr/LevelEditr/LevelEditr.js"></script>
+    <script src="GameStartr/LevelEditr/beautify.js"></script>
+    <script src="GameStartr/NumberMakr/NumberMakr.js"></script>
+    <script src="GameStartr/MapsCreatr/MapsCreatr.js"></script>
+    <script src="GameStartr/MapScreenr/MapScreenr.js"></script>
+    <script src="GameStartr/MapsHandlr/MapsHandlr.js"></script>
+    <script src="GameStartr/ModAttachr/ModAttachr.js"></script>
+    <script src="GameStartr/PixelDrawr/PixelDrawr.js"></script>
+    <script src="GameStartr/PixelRendr/PixelRendr.js"></script>
+    <script src="GameStartr/ObjectMakr/ObjectMakr.js"></script>
+    <script src="GameStartr/StatsHoldr/StatsHoldr.js"></script>
+    <script src="GameStartr/StringFilr/StringFilr.js"></script>
+    <script src="GameStartr/ThingHittr/ThingHittr.js"></script>
+    <script src="GameStartr/TimeHandlr/TimeHandlr.js"></script>
+    <script src="GameStartr/QuadsKeepr/QuadsKeepr.js"></script>
+    <script src="GameStartr/UserWrappr/UserWrappr.js"></script>
+    <script src="GameStartr/WorldSeedr/WorldSeedr.js"></script>
+    <script src="FullScreenMario.js"></script>
+    <script src="settings/audio.js"></script>
+    <script src="settings/collisions.js"></script>
+    <script src="settings/editor.js"></script>
+    <script src="settings/generator.js"></script>
+    <script src="settings/groups.js"></script>
+    <script src="settings/events.js"></script>
+    <script src="settings/input.js"></script>
+    <script src="settings/maps.js"></script>
+    <script src="settings/mods.js"></script>
+    <script src="settings/objects.js"></script>
+    <script src="settings/quadrants.js"></script>
+    <script src="settings/renderer.js"></script>
+    <script src="settings/runner.js"></script>
+    <script src="settings/sprites.js"></script>
+    <script src="settings/statistics.js"></script>
+    <script src="settings/ui.js"></script>
+    <!-- /build -->
+
+    <!-- build:js index.min.js -->
+    <script src="index.js"></script>
+    <script>
+
+        console.log(
+            "loading user project...."
+        )
+
+        const baseline = {
+            "name": "New Map",
+            "locations": [{
+                "entry": "Plain"
+            }],
+            "areas": [
+                {
+                    "setting": "Overworld",
+                    "blockBoundaries": true,
+                    "creation": [
+                        { "macro": "Pattern", "pattern": "BackRegular", "repeat": 5 },
+                        { "macro": "Floor", "width": 552 },
+                        { "thing": "DecorativeBack", "x": 20, "y": 88 },
+                        { "thing": "DecorativeDot", "x": 21.5, "y": 46.5 },
+                        { "thing": "DecorativeDot", "x": 21.5, "y": 86.5 },
+                        {
+                            "thing": "CustomText", "x": 20, "y": 36, "texts": [
+                                { "text": "MOVE: ARROWS/WASD", "offset": 12 },
+                                { "text": "FIRE/SPRINT: SHIFT/CTRL" },
+                                { "text": "PAUSE: P/RIGHTCLICK", "offset": 8 }
+                            ]
+                        },
+                        {
+                            "thing": "CustomText", "x": 24.5, "y": 84, "size": "Large", "texts": [
+                                { "text": "SUPER" }
+                            ]
+                        },
+                        {
+                            "thing": "CustomText", "x": 24.5, "y": 68, "size": "Huge", "texts": [
+                                { "text": "MARIO BROS." }
+                            ]
+                        },
+                        { "thing": "DecorativeDot", "x": 105.5, "y": 46.5 },
+                        { "thing": "DecorativeDot", "x": 105.5, "y": 86.5 },
+                        {
+                            "thing": "CustomText", "x": 52, "y": 44, "size": "Colored", "texts": [
+                                { "text": "©1985 NINTENDO" }
+                            ]
+                        },
+                        { "thing": "Block", "x": 128, "y": 32 },
+                        { "thing": "Brick", "x": 160, "y": 32 },
+                        { "thing": "Block", "x": 168, "y": 32, "contents": "Mushroom" },
+                        { "thing": "Goomba", "x": 176, "y": 8 },
+                        { "thing": "Brick", "x": 176, "y": 32 },
+                        { "thing": "Block", "x": 176, "y": 64 },
+                        { "thing": "Block", "x": 184, "y": 32 },
+                        { "thing": "Brick", "x": 192, "y": 32 },
+                        { "macro": "Pipe", "x": 224, "height": 16 },
+                        { "macro": "Pipe", "x": 304, "height": 24 },
+                        { "thing": "Goomba", "x": 340, "y": 8 },
+                        { "macro": "Pipe", "x": 368, "height": 32 },
+                        { "thing": "Goomba", "x": 412, "y": 8 },
+                        { "thing": "Goomba", "x": 422, "y": 8 },
+                        { "macro": "Pipe", "x": 456, "height": 32, "transport": 2 },
+                        { "thing": "Block", "x": 512, "y": 40, "contents": "Mushroom1Up", "hidden": true },
+                        { "macro": "Floor", "x": 568, "width": 120 },
+                        { "thing": "Brick", "x": 616, "y": 32 },
+                        { "thing": "Block", "x": 624, "y": 32, "contents": "Mushroom" },
+                        { "thing": "Brick", "x": 632, "y": 32 },
+                        { "thing": "Brick", "x": 640, "y": 32 },
+                        { "thing": "Goomba", "x": 640, "y": 72 },
+                        { "thing": "Brick", "x": 648, "y": 64 },
+                        { "thing": "Brick", "x": 656, "y": 64 },
+                        { "thing": "Goomba", "x": 656, "y": 72 },
+                        { "macro": "Fill", "thing": "Brick", "x": 664, "y": 64, "xnum": 5, "xwidth": 8 },
+                        { "macro": "Floor", "x": 712, "width": 512 },
+                        { "macro": "Fill", "thing": "Brick", "x": 728, "y": 64, "xnum": 3, "xwidth": 8 },
+                        { "thing": "Brick", "x": 752, "y": 32, "contents": "Coin" },
+                        { "thing": "Block", "x": 752, "y": 64 },
+                        { "thing": "Goomba", "x": 776, "y": 8 },
+                        { "thing": "Goomba", "x": 788, "y": 8 },
+                        { "thing": "Brick", "x": 800, "y": 32 },
+                        { "thing": "Brick", "x": 808, "y": 32, "contents": "Star" },
+                        { "thing": "Block", "x": 848, "y": 32 },
+                        { "thing": "Koopa", "x": 856, "y": 12 },
+                        { "thing": "Block", "x": 872, "y": 32 },
+                        { "thing": "Block", "x": 872, "y": 64, "contents": "Mushroom" },
+                        { "thing": "Block", "x": 896, "y": 32 },
+                        { "thing": "Goomba", "x": 912, "y": 8 },
+                        { "thing": "Goomba", "x": 924, "y": 8 },
+                        { "thing": "Brick", "x": 944, "y": 32 },
+                        { "macro": "Fill", "thing": "Brick", "x": 968, "y": 64, "xnum": 3, "xwidth": 8 },
+                        { "macro": "Fill", "thing": "Goomba", "x": 992, "y": 8, "xnum": 4, "xwidth": 16 },
+                        { "thing": "Brick", "x": 1024, "y": 64 },
+                        { "thing": "Brick", "x": 1032, "y": 32 },
+                        { "thing": "Block", "x": 1032, "y": 64 },
+                        { "thing": "Brick", "x": 1040, "y": 32 },
+                        { "thing": "Block", "x": 1040, "y": 64 },
+                        { "thing": "Brick", "x": 1048, "y": 64 },
+                        { "thing": "Stone", "x": 1072, "y": 8 },
+                        { "thing": "Stone", "x": 1080, "y": 16, "height": 16 },
+                        { "thing": "Stone", "x": 1088, "y": 24, "height": 24 },
+                        { "thing": "Stone", "x": 1096, "y": 32, "height": 32 },
+                        { "thing": "Stone", "x": 1120, "y": 32, "height": 32 },
+                        { "thing": "Stone", "x": 1128, "y": 24, "height": 24 },
+                        { "thing": "Stone", "x": 1136, "y": 16, "height": 16 },
+                        { "thing": "Stone", "x": 1144, "y": 8 },
+                        { "thing": "Stone", "x": 1184, "y": 8 },
+                        { "thing": "Stone", "x": 1192, "y": 16, "height": 16 },
+                        { "thing": "Stone", "x": 1200, "y": 24, "height": 24 },
+                        { "thing": "Stone", "x": 1208, "y": 32, "height": 32 },
+                        { "thing": "Stone", "x": 1216, "y": 32, "height": 32 },
+                        { "macro": "Floor", "x": 1240, "width": 656 },
+                        { "thing": "Stone", "x": 1240, "y": 32, "height": 32 },
+                        { "thing": "Stone", "x": 1248, "y": 24, "height": 24 },
+                        { "thing": "Stone", "x": 1256, "y": 16, "height": 16 },
+                        { "thing": "Stone", "x": 1264, "y": 8 },
+                        { "macro": "Pipe", "x": 1304, "height": 16, "entrance": 1 },
+                        { "thing": "Brick", "x": 1344, "y": 32 },
+                        { "thing": "Brick", "x": 1352, "y": 32 },
+                        { "thing": "Block", "x": 1360, "y": 32 },
+                        { "thing": "Brick", "x": 1368, "y": 32 },
+                        { "thing": "Goomba", "x": 1392, "y": 8 },
+                        { "thing": "Goomba", "x": 1404, "y": 8 },
+                        { "macro": "Pipe", "x": 1432, "height": 16 },
+                        { "thing": "Stone", "x": 1448, "y": 8 },
+                        { "thing": "Stone", "x": 1456, "y": 16, "height": 16 },
+                        { "thing": "Stone", "x": 1464, "y": 24, "height": 24 },
+                        { "thing": "Stone", "x": 1472, "y": 32, "height": 32 },
+                        { "thing": "Stone", "x": 1480, "y": 40, "height": 40 },
+                        { "thing": "Stone", "x": 1488, "y": 48, "height": 48 },
+                        { "thing": "Stone", "x": 1496, "y": 56, "height": 56 },
+                        { "thing": "Stone", "x": 1504, "y": 64, "height": 64, "width": 16 },
+                        { "macro": "EndOutsideCastle", "x": 1584, "y": 0, "transport": { "map": "1-2" } }
+                    ]
+                }, {
+                    "setting": "Underworld",
+                    "blockBoundaries": true,
+                    "creation": [
+                        { "macro": "Ceiling", "x": 32, "width": 56 },
+                        { "macro": "Floor", "x": 0, "y": 0, "width": 136 },
+                        { "macro": "Fill", "thing": "Brick", "x": 0, "y": 8, "ynum": 11, "yheight": 8 },
+                        { "macro": "Fill", "thing": "Brick", "x": 32, "y": 8, "xnum": 7, "ynum": 3, "xwidth": 8, "yheight": 8 },
+                        { "macro": "Fill", "thing": "Coin", "x": 33, "y": 31, "xnum": 7, "ynum": 2, "xwidth": 8, "yheight": 16 },
+                        { "macro": "Fill", "thing": "Coin", "x": 41, "y": 63, "xnum": 5, "ynum": 1, "xwidth": 8 },
+                        { "thing": "PipeHorizontal", "x": 104, "y": 16, "transport": 1, "width": 16 },
+                        { "thing": "PipeVertical", "x": 120, "y": 88, "height": 88 }
+                    ]
+                }
+            ]
+        }
+
+        const deepCopy = (x) => JSON.parse(JSON.stringify(x))
+
+        function generateMap(preference, p = .2) {
+            let copy = deepCopy(baseline)
+            switch (preference.kind) {
+                case "less-npc":
+                    copy.areas[0].creation = copy.areas[0].creation.map(x => {
+                        const r = Math.random()
+                        const npc = [
+                            "Koopa",
+                            "Goomba",
+                            "Beetle"
+                        ]
+                        if (r > p && npc.includes(
+                            x.thing
+                        )) {
+
+                            return {
+                                ...x,
+                                // TODO: random
+                                thing: "Brick"
+                            }
+                        }
+                        return x
+                    })
+                    return copy
+
+                case "more-npc":
+                    copy.areas[0].creation = copy.areas[0].creation.map(x => {
+                        const r = Math.random()
+                        const npc = [
+                            "Koopa",
+                            "Goomba",
+                            "Beetle"
+                        ]
+                        if (r > p && !npc.includes(
+                            x.thing
+                        )) {
+
+                            return {
+                                ...x,
+                                thing: "Koopa"
+                            }
+                        }
+                        return x
+                    })
+                    return copy
+
+                case 'more-coins':
+                    copy.areas[0].creation = copy.areas[0].creation.map(x => {
+                        const r = Math.random()
+                        const replacable = [
+                            "Brick",
+                            "Koopa",
+                            "Lakitu",
+                            "Beetle",
+                            "Stone"
+                        ]
+                        if (r < p) {
+                            return x
+                        }
+
+                        return {
+                            ...x,
+                            thing: "Coin",
+                        }
+
+                    }
+                    )
+                    return copy
+                default:
+                    break;
+            }
+        }
+
+
+        window.generateMap = generateMap
+
+    </script>
+    <!-- /build -->
+</body>
+
 </html>

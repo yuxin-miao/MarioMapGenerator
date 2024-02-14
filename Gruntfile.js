@@ -38,6 +38,7 @@ module.exports = function (grunt) {
       dist: {
         src: [
           "<%= meta.GameStartrPath %>/EightBittr/*.js",
+          "<%= meta.GameStartrPath %>/pro/*.js",
           "<%= meta.GameStartrPath %>/GameStartr.js",
           "<%= meta.GameStartrPath %>/AudioPlayr/*.js",
           "<%= meta.GameStartrPath %>/ChangeLinr/*.js",
