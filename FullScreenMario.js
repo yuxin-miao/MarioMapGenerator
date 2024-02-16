@@ -180,8 +180,23 @@ var FullScreenMario = (function (GameStartr) {
       playerSmaller: 0,
       coin: 0,
       star: 0,
+    },
+    totalPlayTime: 0,
+    itemInteraction: {
+      mushroom: 0,
+      fireFlower: 0
+    },
+    mapEnterPipe: 0,
+    levelsCompleted: 0,
+    timesDied: 0,
+    environmentalKills: 0, // knocking a shell into enemies
+    blocksHit: {
+      total: 0,
+      regular: 0,
+      question: 0,
 
-    }
+    },
+    score: 0,
   };
   function printDict() {
     for (var key in behaviorDict) {
@@ -331,9 +346,8 @@ var FullScreenMario = (function (GameStartr) {
       textWidth,
       dx,
       i;
-    console.log("histories:");
     var histories = EightBitter.InputWriter.getHistories();
-    console.log(histories, 12);
+    // console.log(histories, 12);
     EightBitter.killNPCs();
 
     EightBitter.AudioPlayer.clearAll();
@@ -1600,7 +1614,7 @@ var FullScreenMario = (function (GameStartr) {
     if (!thing.player) {
       return;
     }
-
+    behaviorDict.itemInteraction.mushroom += 1;
     thing.EightBitter.gainLife(1);
     thing.EightBitter.ModAttacher.fireEvent("onPlayerShroom1Up", thing, other);
   }
@@ -1736,7 +1750,7 @@ var FullScreenMario = (function (GameStartr) {
    *                                  default, false).
    */
   function playerGetsBig(thing, noAnimation) {
-    behaviorDict.collisions.playerSmaller += 1;
+    behaviorDict.collisions.playerBigger += 1;
     thing.keys.down = 0;
     thing.EightBitter.setPlayerSizeLarge(thing);
     thing.EightBitter.removeClasses(thing, "crouching small");
@@ -1853,7 +1867,7 @@ var FullScreenMario = (function (GameStartr) {
    */
   function playerGetsFire(thing) {
     thing.shrooming = false;
-
+    behaviorDict.itemInteraction.fireFlower += 1;
     if (!thing.star) {
       thing.EightBitter.addClass(thing, "fiery");
     }
@@ -2186,7 +2200,7 @@ var FullScreenMario = (function (GameStartr) {
    * @param {Thing} thing
    */
   function spawnMoveFloating(thing) {
-    console.log("Moving", thing.title);
+    // console.log("Moving", thing.title);
     // Make sure thing.begin <= thing.end
     thing.EightBitter.setMovementEndpoints(thing);
 
@@ -3515,6 +3529,7 @@ var FullScreenMario = (function (GameStartr) {
    * @param {Solid} other
    */
   function collideBottomBlock(thing, other) {
+    behaviorDict.blocksHit.total += 1;
     if (other.solid && !thing.solid) {
       return thing.EightBitter.collideBottomBlock(other, thing);
     }
@@ -7205,7 +7220,7 @@ var FullScreenMario = (function (GameStartr) {
     if (location && location.xloc) {
       EightBitter.scrollWindow(location.xloc * EightBitter.unitsize);
     }
-
+    behaviorDict.mapEnterPipe += 1;
     EightBitter.addPlayer(
       location.entrance.left +
       (EightBitter.player.width * EightBitter.unitsize) / 2,
