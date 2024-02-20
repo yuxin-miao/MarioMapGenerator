@@ -29,15 +29,15 @@ interface IMapsHandlrSettings {
 
 /**
  * MapsHandlr.js
- * 
+ *
  * Map manipulator and spawner for GameStarter maps that is the front-end
  * counterpart to MapsCreatr. PreThing listings are loaded from Maps stored in a
  * MapsCreatr and added or removed from user input. Area properties are given to
  * a MapScreenr when a new Area is loaded.
- * 
+ *
  * Examples are not available for MapsHandlr, as the required code would be very
  * substantial. Instead see GameStartr.js and its map manipulation code.
- * 
+ *
  * @author "Josh Goldberg" <josh@fullscreenmario.com>
  */
 class MapsHandlr {
@@ -161,10 +161,10 @@ class MapsHandlr {
         return this.mapName;
     }
 
-    /** 
+    /**
      * Gets the map listed under the given name. If no name is provided, the
      * mapCurrent is returned instead.
-     * 
+     *
      * @param {String} [name]   An optional key to find the map under.
      * @return {Map}
      */
@@ -178,7 +178,7 @@ class MapsHandlr {
 
     /**
      * Simple getter pipe to the internal MapsCreator.getMaps() function.
-     * 
+     *
      * @return {Object<Map>}   A listing of maps, keyed by their names.
      */
     getMaps(): any {
@@ -210,7 +210,7 @@ class MapsHandlr {
     /**
      * Simple getter function for the internal prethings object. This will be
      * undefined before the first call to setMap.
-     * 
+     *
      * @return {Object} A listing of the current area's Prethings.
      */
     getPreThings(): any {
@@ -223,25 +223,32 @@ class MapsHandlr {
 
     /**
      * Sets the currently manipulated Map in the handler to be the one under a
-     * given name. Note that this will do very little unless a location is 
+     * given name. Note that this will do very little unless a location is
      * provided.
-     * 
+     *
      * @param {String} name   A key to find the map under.
      * @param {Mixed} [location]   An optional key for a location to immediately
-     *                              start the map in (if not provided, ignored). 
-     *                          
+     *                              start the map in (if not provided, ignored).
+     *
      */
-    setMap(name: string, location: string = undefined): IMapsCreatrMap {
-        // Get the newly current map from this.getMap normally
-        this.mapCurrent = this.getMap(name);
-        if (!this.mapCurrent) {
-            throw new Error("Unknown Map in setMap: '" + name + "'.");
+    setMap(name: string, location: string = undefined, jsonMap = undefined): IMapsCreatrMap {
+
+        if(jsonMap) {
+            this.mapCurrent = jsonMap
         }
+         else {
+            // Get the newly current map from this.getMap normally
+            this.mapCurrent = this.getMap(name);
+            if (!this.mapCurrent) {
+                throw new Error("Unknown Map in setMap: '" + name + "'.");
+            }
+            this.mapName = name;
+         }
 
-        this.mapName = name;
-
+        console.log(this.mapCurrent, 'mapCurrent')
         // Most of the work is done by setLocation (by default, the map's first)
-        if (arguments.length > 1) {
+
+        if (location) {
             this.setLocation(location);
         }
 
@@ -249,10 +256,10 @@ class MapsHandlr {
     }
 
     /**
-     * Goes to a particular location in the given map. Area attributes are 
+     * Goes to a particular location in the given map. Area attributes are
      * copied to the MapScreener, PreThings are loaded, and stretches and afters
      * are checked.
-     * 
+     *
      * @param {String} name   The key of the Location to start in.
      */
     setLocation(name: string): void {
@@ -302,9 +309,9 @@ class MapsHandlr {
     }
 
     /**
-     * Applies the stretchAdd Function to each given "stretch" command and  
+     * Applies the stretchAdd Function to each given "stretch" command and
      * stores the commands in stretches.
-     * 
+     *
      * @param {Object[]} stretchesRaw
      */
     setStretches(stretchesRaw: IPreThingSettings[]): void {
@@ -315,7 +322,7 @@ class MapsHandlr {
     /**
      * Applies the afterAdd Function to each given "after" command and stores
      * the commands in afters.
-     * 
+     *
      * @param {Object[]} aftersRaw
      */
     setAfters(aftersRaw: IPreThingSettings[]): void {
@@ -324,11 +331,11 @@ class MapsHandlr {
     }
 
     /**
-     * Calls onSpawn on every PreThing touched by the given bounding box, 
-     * determined in order of the given direction. This is a simple wrapper 
+     * Calls onSpawn on every PreThing touched by the given bounding box,
+     * determined in order of the given direction. This is a simple wrapper
      * around applySpawnAction that also gives it true as the status.
-     * 
-     * @param {String} direction   The direction by which to order PreThings: 
+     *
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {Number} top   The upper-most bound to spawn within.
      * @param {Number} right   The right-most bound to spawn within.
@@ -345,8 +352,8 @@ class MapsHandlr {
      * Calls onUnspawn on every PreThing touched by the given bounding box,
      * determined in order of the given direction. This is a simple wrapper
      * around applySpawnAction that also gives it false as the status.
-     * 
-     * @param {String} direction   The direction by which to order PreThings: 
+     *
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {Number} top   The upper-most bound to spawn within.
      * @param {Number} right   The right-most bound to spawn within.
@@ -366,19 +373,19 @@ class MapsHandlr {
      * status is used as a filter: all PreThings that already have the status
      * (generally true or false as spawned or unspawned, respectively) will have
      * the callback called on them.
-     * 
+     *
      * @param {Function} callback   The callback to be run whenever a matching
      *                              matching PreThing is found.
      * @param {Boolean} status   The spawn status to match PreThings against.
-     *                           Only PreThings with .spawned === status will 
+     *                           Only PreThings with .spawned === status will
      *                           have the callback applied to them.
-     * @param {String} direction   The direction by which to order PreThings: 
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {Number} top   The upper-most bound to apply within.
      * @param {Number} right   The right-most bound to apply within.
      * @param {Number} bottom    The bottom-most bound to apply within.
      * @param {Number} left    The left-most bound to apply within.
-     * @todo This will almost certainly present problems when different 
+     * @todo This will almost certainly present problems when different
      *       directions are used. For Pokemon/Zelda style games, the system
      *       will probably need to be adapted to use a Quadrants approach
      *       instead of plain Arrays.
@@ -418,7 +425,7 @@ class MapsHandlr {
             start = this.findPreThingsSpawnStart(direction, group, mid, top, right, bottom, left);
             end = this.findPreThingsSpawnEnd(direction, group, mid, top, right, bottom, left);
 
-            // Loop through all the directionally valid PreThings, spawning if 
+            // Loop through all the directionally valid PreThings, spawning if
             // they're within the bounding box
             for (i = start; i <= end; i += 1) {
                 prething = group[i];
@@ -433,11 +440,11 @@ class MapsHandlr {
     }
 
     /**
-     * Finds the index from which PreThings should stop having an action 
-     * applied to them in applySpawnAction. This is less efficient than the 
+     * Finds the index from which PreThings should stop having an action
+     * applied to them in applySpawnAction. This is less efficient than the
      * unused version below, but is more reliable for slightly unsorted groups.
-     * 
-     * @param {String} direction   The direction by which to order PreThings: 
+     *
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {PreThing[]} group   The group to find a PreThing index within.
      * @param {Number} mid   The middle of the group. This is currently unused.
@@ -470,11 +477,11 @@ class MapsHandlr {
     }
 
     /**
-     * Finds the index from which PreThings should stop having an action 
-     * applied to them in applySpawnAction. This is less efficient than the 
+     * Finds the index from which PreThings should stop having an action
+     * applied to them in applySpawnAction. This is less efficient than the
      * unused version below, but is more reliable for slightly unsorted groups.
-     * 
-     * @param {String} direction   The direction by which to order PreThings: 
+     *
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {PreThing[]} group   The group to find a PreThing index within.
      * @param {Number} mid   The middle of the group. This is currently unused.
@@ -509,10 +516,10 @@ class MapsHandlr {
 
     /**
      * Conditionally returns a measurement based on what direction String is
-     * given. This is useful for generically finding boundaries when the 
+     * given. This is useful for generically finding boundaries when the
      * direction isn't known, such as in findPreThingsSpawnStart and -End.
-     * 
-     * @param {String} direction   The direction by which to order PreThings: 
+     *
+     * @param {String} direction   The direction by which to order PreThings:
      *                             "xInc", "xDec", "yInc", or "yDec".
      * @param {Number} top   The upper-most bound to apply within.
      * @param {Number} right   The right-most bound to apply within.

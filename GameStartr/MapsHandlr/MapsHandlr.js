@@ -1216,16 +1216,23 @@ var MapsHandlr = (function () {
      *                              start the map in (if not provided, ignored).
      *
      */
-    MapsHandlr.prototype.setMap = function (name, location) {
+    MapsHandlr.prototype.setMap = function (name, location, jsonMap) {
         if (location === void 0) { location = undefined; }
-        // Get the newly current map from this.getMap normally
-        this.mapCurrent = this.getMap(name);
-        if (!this.mapCurrent) {
-            throw new Error("Unknown Map in setMap: '" + name + "'.");
+        if (jsonMap === void 0) { jsonMap = undefined; }
+        if (jsonMap) {
+            this.mapCurrent = jsonMap;
         }
-        this.mapName = name;
+        else {
+            // Get the newly current map from this.getMap normally
+            this.mapCurrent = this.getMap(name);
+            if (!this.mapCurrent) {
+                throw new Error("Unknown Map in setMap: '" + name + "'.");
+            }
+            this.mapName = name;
+        }
+        console.log(this.mapCurrent, 'mapCurrent');
         // Most of the work is done by setLocation (by default, the map's first)
-        if (arguments.length > 1) {
+        if (location) {
             this.setLocation(location);
         }
         return this.mapCurrent;

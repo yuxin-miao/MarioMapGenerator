@@ -4,10 +4,12 @@ console.log(
 )
 
 const baseline = {
-    "name": "New Map",
-    "locations": [{
-        "entry": "Plain"
-    }],
+    "name": "1-1",
+    "locations": [
+        { "entry": "Plain" },
+        { "entry": "PipeVertical" },
+        { "area": 1 },
+    ],
     "areas": [
         {
             "setting": "Overworld",
