@@ -460,7 +460,6 @@ var FullScreenMario = (function (GameStartr) {
 
   function gameStart() {
     var EightBitter = EightBittr.prototype.ensureCorrectCaller(this);
-    console.log(EightBitter.settings.maps.mapDefault)
     EightBitter.setMap(
       EightBitter.settings.maps.mapDefault,
       EightBitter.settings.maps.locationDefault
@@ -739,7 +738,7 @@ var FullScreenMario = (function (GameStartr) {
       (player.resting || player.EightBitter.MapScreener.underwater)
     ) {
       behaviorDict.jump += 1;
-      printDict();
+      // printDict();
       player.keys.jump = 1;
       player.canjump = player.keys.jumplev = 0;
 
@@ -7136,13 +7135,13 @@ var FullScreenMario = (function (GameStartr) {
       map;
     // change the map to pre-added one
     // name = "1-1_more-coins"
-    console.log(name, 'name')
+    // console.log(name, 'name')
     if (typeof name === "undefined" || name instanceof EightBittr) {
       name = EightBitter.MapsHandler.getMapName();
     }
 
     const generated = generateMap({ kind: "more-coins" })
-    console.log(JSON.stringify(generated), "generated")
+    // console.log(JSON.stringify(generated), "generated")
 
     map = EightBitter.MapsHandler.setMap(name);
 
@@ -8804,7 +8803,17 @@ var FullScreenMario = (function (GameStartr) {
         collectionKey: "FlagPole",
       },
     ];
-
+    //console.log(reference.transport, reference.transport.map, "castle")
+    if (reference.transport.map == '1-2') {
+      //console.log("transport")
+      output.push({
+        macro: "CastleSmall",
+        x: x + (reference.castleDistance || 32),
+        y: y,
+        transport: { "map": "1-1_more-coins" },
+      });
+      return output;
+    }
     if (reference.large) {
       output.push({
         macro: "CastleLarge",
@@ -8821,7 +8830,7 @@ var FullScreenMario = (function (GameStartr) {
         transport: reference.transport,
       });
     }
-
+    // console.log("wrong output")
     return output;
   }
 
