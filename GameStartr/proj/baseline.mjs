@@ -1,8 +1,10 @@
-export default {
-    "name": "New Map",
-    "locations": [{
-        "entry": "Plain"
-    }],
+baseline = {
+    "name": "1-1",
+    "locations": [
+        { "entry": "Plain" },
+        { "entry": "PipeVertical" },
+        { "area": 1 },
+    ],
     "areas": [
         {
             "setting": "Overworld",
