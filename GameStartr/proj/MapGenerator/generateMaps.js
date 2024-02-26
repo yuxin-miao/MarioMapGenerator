@@ -173,6 +173,27 @@ function generateMap(preference, p = .2) {
                 return x
             })
             return copy
+        case "less-npc":
+
+            copy.areas[0].creation = copy.areas[0].creation.map(x => {
+                const r = Math.random()
+                const npc = [
+                    "Koopa",
+                    "Goomba",
+                    "Beetle"
+                ]
+                if (r > 0.5 && npc.includes(
+                    x.thing
+                )) {
+
+                    return {
+                        ...x,
+                        thing: "Stone"
+                    }
+                }
+                return x
+            })
+            return copy
 
         case "more-npc":
             copy.areas[0].creation = copy.areas[0].creation.map(x => {

@@ -8684,7 +8684,6 @@ var FullScreenMario = (function (GameStartr) {
         collectionKey: "FlagPole",
       },
     ];
-    //console.log(reference.transport, reference.transport.map, "castle")
     if (reference.transport.map == '1-2') {
       //console.log("transport")
       output.push({
