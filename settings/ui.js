@@ -8,11 +8,11 @@ FullScreenMario.prototype.settings.ui = {
             "font-family": "'Press Start'",
             "src": "url('Fonts/pressstart2p-webfont.eot')",
             "src": [
-                    "url('Fonts/pressstart2p-webfont.eot?#iefix') format('embedded-opentype')",
-                    "url('Fonts/pressstart2p-webfont.woff') format('woff')",
-                    "url('Fonts/pressstart2p-webfont.ttf') format('truetype')",
-                    "url('Fonts/pressstart2p-webfont.svg') format('svg')"
-                ].join(", "),
+                "url('Fonts/pressstart2p-webfont.eot?#iefix') format('embedded-opentype')",
+                "url('Fonts/pressstart2p-webfont.woff') format('woff')",
+                "url('Fonts/pressstart2p-webfont.ttf') format('truetype')",
+                "url('Fonts/pressstart2p-webfont.svg') format('svg')"
+            ].join(", "),
             "font-weight": "normal",
             "font-style": "normal"
         }
@@ -126,7 +126,7 @@ FullScreenMario.prototype.settings.ui = {
                 "usage": "{%%%%GAME%%%%}.playerStar({%%%%GAME%%%%}.player)"
             }],
             "Statistics": [{
-                    "title": "{%%%%GAME%%%%}.StatsHolder.set('coins')",
+                "title": "{%%%%GAME%%%%}.StatsHolder.set('coins')",
                 "description": "Sets the number of coins you have.",
                 "usage": "{%%%%GAME%%%%}.StatsHolder.set('coins', <number>);",
                 "examples": [{
@@ -269,106 +269,6 @@ FullScreenMario.prototype.settings.ui = {
                     }
                 }
             ]
-        }, {
-            "title": "Controls",
-            "generator": "OptionsTable",
-            "options": (function (controls) {
-                return controls.map(function (title) {
-                    return {
-                        "title": title[0].toUpperCase() + title.substr(1),
-                        "type": "Keys",
-                        "storeLocally": true,
-                        "source": function (GameStarter) {
-                            return GameStarter.InputWriter
-                                .getAliasAsKeyStrings(title)
-                                .map(function (string) {
-                                    return string.toLowerCase();
-                                });
-                        },
-                        "callback": function (GameStarter, valueOld, valueNew) {
-                            GameStarter.InputWriter.switchAliasValues(
-                                title,
-                                [GameStarter.InputWriter.convertKeyStringToAlias(valueOld)],
-                                [GameStarter.InputWriter.convertKeyStringToAlias(valueNew)]
-                            );
-                        }
-                    };
-                });
-            })(["left", "right", "up", "down", "sprint", "pause"])
-        }, {
-            "title": "Mods!",
-            "generator": "OptionsButtons",
-            "keyActive": "enabled",
-            "assumeInactive": true,
-            "options": function (GameStarter) {
-                return GameStarter.ModAttacher.getMods();
-            },
-            "callback": function (GameStarter, schema, button) {
-                GameStarter.ModAttacher.toggleMod(button.getAttribute("value") || button.textContent);
-            }
-        }, {
-            "title": "Editor",
-            "generator": "LevelEditor"
-        }, {
-            "title": "Maps",
-            "generator": "MapsGrid",
-            "rangeX": [1, 4],
-            "rangeY": [1, 8],
-            "extras": {
-                "Map Generator!": (function () {
-                    var shuffle = function (string) {
-                        return string
-                            .split('')
-                            // Same function used in browserchoice.eu :)
-                            .sort(function () {
-                                return 0.5 - Math.random()
-                            })
-                            .reverse()
-                            .join('');
-                    };
-                    
-                    var getNewSeed = function () {
-                        return shuffle(String(new Date().getTime()));
-                    };
-                    
-                    return {
-                        "title": "Map Generator!",
-                        "callback": function (GameStarter, schema, button, event) {
-                            var parent = event.target.parentNode,
-                                randomizer = parent.querySelector(".randomInput");
-                                
-                            randomizer.value = randomizer.value.replace(/[^\d]/g, '');
-                            if (!randomizer.value) {
-                                randomizer.value = getNewSeed();
-                            }
-                            
-                            GameStarter.LevelEditor.disable();
-                            GameStarter.NumberMaker.resetFromSeed(randomizer.value);
-                            GameStarter.setMap("Random");
-                            
-                            if (!randomizer.getAttribute("custom")) {
-                                randomizer.value = getNewSeed();
-                            }
-                        },
-                        "extraElements": [
-                            [
-                                "input", {
-                                    "className": "randomInput maps-grid-input",
-                                    "type": "text",
-                                    "value": getNewSeed(),
-                                    "onchange": function (event) {
-                                        event.target.setAttribute("custom", true)
-                                    }
-                                }
-                            ]
-                        ]
-                    };
-                })()
-            },
-            "callback": function (GameStarter, schema, button, event) {
-                GameStarter.LevelEditor.disable();
-                GameStarter.setMap(button.getAttribute("value") || button.textContent);
-            }
-        }
+        },
     ]
 };
