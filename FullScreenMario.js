@@ -8685,12 +8685,13 @@ var FullScreenMario = (function (GameStartr) {
       },
     ];
     if (reference.transport.map == '1-2') {
-      //console.log("transport")
+      var nextMap = defineTransportMap();
+      // TODO: uplaod selectedData dict to server and reset
       output.push({
         macro: "CastleSmall",
         x: x + (reference.castleDistance || 32),
         y: y,
-        transport: { "map": "1-1_more-coins" },
+        transport: { "map": nextMap },
       });
       return output;
     }
@@ -8713,7 +8714,13 @@ var FullScreenMario = (function (GameStartr) {
     // console.log("wrong output")
     return output;
   }
-
+  function defineTransportMap() {
+    var totalCoin = selectedData.upCoin + selectedData.hiddenCoin + selectedData.regularCoin;
+    if (totalCoin > 8) {
+      return "map1"
+    }
+    return "map2"
+  }
   /**
    * Macro to place the typical ending Things for the inside of a castle area.
    *

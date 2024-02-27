@@ -1,5 +1,5 @@
 FullScreenMario.prototype.settings.maps = {
-    "mapDefault": "map1",
+    "mapDefault": "1-1",
     "locationDefault": "0",
     "groupTypes": ["Character", "Solid", "Scenery", "Text"],
     "requireEntrance": true,
@@ -987,9 +987,11 @@ FullScreenMario.prototype.settings.maps = {
         },
         {
             "name": "map2",
-            "locations": [{
-                "entry": "Plain"
-            }],
+            "locations": [
+                { "entry": "Plain" },
+                { "entry": "PipeVertical" },
+                { "area": 1 },
+            ],
             "areas": [{
                 "setting": "Overworld",
                 "blockBoundaries": true,
