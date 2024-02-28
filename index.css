@@ -330,6 +330,7 @@ section.section-text {
 /* Modal Content */
 .modal-content {
     position: relative;
+    color: #009966;
     /* Important for stacking order within the modal */
     background-color: #fefefe;
     margin: 10% auto;
@@ -354,4 +355,31 @@ section.section-text {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.scale-question {
+    margin-bottom: 20px;
+    /* Adjust space between questions */
+}
+
+.scale-options {
+    display: flex;
+    justify-content: space-between;
+    /* Distribute space between options */
+    max-width: 600px;
+    /* Adjust based on your form's width */
+    margin-top: 10px;
+    /* Space between the question and the scale options */
+}
+
+.scale-options label {
+    display: flex;
+    align-items: center;
+    /* Center radio buttons with labels */
+}
+
+/* Optional: Improve spacing around radio buttons */
+.scale-options input[type="radio"] {
+    margin-right: 5px;
+    /* Space between radio button and label text */
 }

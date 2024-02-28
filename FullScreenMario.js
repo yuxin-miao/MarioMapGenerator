@@ -759,7 +759,6 @@ var FullScreenMario = (function (GameStartr) {
       player.EightBitter.animatePlayerRemoveCrouch(player);
     }
     player.EightBitter.ModAttacher.fireEvent("onKeyUpDown");
-    openModal();
     event.preventDefault();
   }
 
@@ -3987,7 +3986,8 @@ var FullScreenMario = (function (GameStartr) {
    */
   function collideLevelTransport(thing, other) {
     var transport = other.transport;
-
+    console.log("transport triggered");
+    openModal();
     if (!thing.player) {
       return;
     }

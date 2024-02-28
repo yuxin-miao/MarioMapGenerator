@@ -313,14 +313,43 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Questionnaire</h2>
             <form id="questionnaireForm">
-                <label for="question1">Question 1: What is your favorite color?</label><br>
-                <input type="text" id="question1" name="question1"><br>
-                <label for="question2">Question 2: What is your hobby?</label><br>
-                <input type="text" id="question2" name="question2"><br>
-                <label for="question3">Question 3: What is your dream job?</label><br>
-                <input type="text" id="question3" name="question3"><br><br>
+                <h2>Questionnaire</h2>
+                <label for="question1">Question 1: How much did you enjoy playing this level overall?</label><br>
+                <div class="scale-options">
+                    <label><input type="radio" id="pace1" name="paceLevel" value="1"> 1 </label>
+                    <label><input type="radio" id="pace2" name="paceLevel" value="2"> 2</label>
+                    <label><input type="radio" id="pace3" name="paceLevel" value="3"> 3</label>
+                    <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
+                    <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5 </label>
+                </div>
+                <label for="question2">Question 2: How would you rate the level of challenge in this level?</label><br>
+                <div class="scale-options">
+                    <label><input type="radio" id="pace1" name="paceLevel" value="1"> 1 </label>
+                    <label><input type="radio" id="pace2" name="paceLevel" value="2"> 2</label>
+                    <label><input type="radio" id="pace3" name="paceLevel" value="3"> 3</label>
+                    <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
+                    <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5 </label>
+                </div>
+                <label for="question3">Question 3: How likely are you to replay this level?</label><br>
+                <div class="scale-options">
+                    <label><input type="radio" id="pace1" name="paceLevel" value="1"> 1 </label>
+                    <label><input type="radio" id="pace2" name="paceLevel" value="2"> 2</label>
+                    <label><input type="radio" id="pace3" name="paceLevel" value="3"> 3</label>
+                    <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
+                    <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5 </label>
+                </div>
+                <label for="question4">Question 4: How satisfied were you with the pace of the
+                    level?</label><br>
+                <div class="scale-options">
+                    <label><input type="radio" id="pace1" name="paceLevel" value="1"> 1</label>
+                    <label><input type="radio" id="pace2" name="paceLevel" value="2"> 2</label>
+                    <label><input type="radio" id="pace3" name="paceLevel" value="3"> 3</label>
+                    <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
+                    <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5</label>
+                </div>
+                <!-- Container for scale questions -->
+                <div id="scaleQuestionsContainer"></div>
                 <input type="submit" value="Submit">
             </form>
         </div>
