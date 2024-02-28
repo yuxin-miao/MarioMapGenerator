@@ -1,6 +1,7 @@
 /* General elements */
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
 }
@@ -9,7 +10,7 @@ body {
     background: black;
     color: #fafafa;
     overflow-x: hidden;
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 header {
@@ -107,7 +108,8 @@ section#game .EightBitter {
 
 #controls .control:hover {
     margin-top: -288px;
-    height: 316px; /* 288px + 28px */
+    height: 316px;
+    /* 288px + 28px */
     border-color: #99ffcc;
     background: #009966;
     z-index: 70;
@@ -303,4 +305,53 @@ section.section-text {
     section.section-text {
         padding: 14px 7px;
     }
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place and hover over other contents */
+    z-index: 1000;
+    /* Sit on top of any other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Dim the background */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    /* Important for stacking order within the modal */
+    background-color: #fefefe;
+    margin: 10% auto;
+    /* Percentage margin for auto centering */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Adjust as necessary */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* Optional: Adds a shadow to the modal */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -259,7 +259,12 @@
                 <img id="facebook" src="Theme/Facebook.png" alt="Facebook" />
             </a> -->
         </div>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modal Questionnaire</title>
+
     </header>
+
 
     <section id="game">
         <!-- FSM.UserWrapper will fill out this section... -->
@@ -297,10 +302,30 @@
     </section>
 
     <section id="legal" class="section-text">
-        <small><em>Mario, Super Mario Brothers, and all associated games and media are property of Nintendo and/or
+        <small><em>
+                Mario, Super Mario Brothers, and all associated games and media are property of Nintendo and/or
                 Nintendo of America Inc., and are protected by United States and international copyright, trademark and
                 other intellectual property laws.</em></small>
     </section>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Questionnaire</h2>
+            <form id="questionnaireForm">
+                <label for="question1">Question 1: What is your favorite color?</label><br>
+                <input type="text" id="question1" name="question1"><br>
+                <label for="question2">Question 2: What is your hobby?</label><br>
+                <input type="text" id="question2" name="question2"><br>
+                <label for="question3">Question 3: What is your dream job?</label><br>
+                <input type="text" id="question3" name="question3"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
 
     <!-- build:js FullScreenMario.min.js -->
     <script src="GameStartr/proj/MapGenerator/generateMaps.js"></script>
@@ -346,6 +371,7 @@
     <script src="settings/sprites.js"></script>
     <script src="settings/statistics.js"></script>
     <script src="settings/ui.js"></script>
+    <script src="settings/modal.js"> </script>
     <!-- /build -->
 
     <!-- build:js index.min.js -->

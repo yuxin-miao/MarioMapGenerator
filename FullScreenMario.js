@@ -759,7 +759,7 @@ var FullScreenMario = (function (GameStartr) {
       player.EightBitter.animatePlayerRemoveCrouch(player);
     }
     player.EightBitter.ModAttacher.fireEvent("onKeyUpDown");
-
+    openModal();
     event.preventDefault();
   }
 
