@@ -639,6 +639,8 @@ var FullScreenMario = (function (GameStartr) {
    */
   function keyDownDown(player, event) {
     printDict(selectedData);
+    console.log(player, 123)
+
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
     }
@@ -4005,6 +4007,8 @@ var FullScreenMario = (function (GameStartr) {
     } else {
       throw new Error("Unknown transport type:" + transport);
     }
+
+    thing.EightBitter.GamesRunner.pause();
   }
 
   /* Movement functions
