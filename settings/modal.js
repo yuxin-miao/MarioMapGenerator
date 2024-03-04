@@ -5,14 +5,14 @@ function openModal() {
 function closeModal() {
     modal.style.display = "none";
 }
-var span = document.getElementsByClassName("close")[0];
-span.onclick = function () {
-    closeModal();
-}
-window.onclick = function (event) {
-    if (event.target == modal) {
-        closeModal();
-        FSM.GamesRunner.play();
-    }
-}
+// Get the form element
+var form = document.getElementById("questionnaireForm");
+
+// Bind the closeModal function to the form's submit event
+form.onsubmit = function (event) {
+    event.preventDefault(); // Prevent actual form submission to server
+    closeModal(); // Close the modal when the form is submitted
+    FSM.GamesRunner.play();
+    // Here you can also add your form submission logic or AJAX request
+};
 
