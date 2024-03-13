@@ -8720,10 +8720,24 @@ var FullScreenMario = (function (GameStartr) {
   }
   function defineTransportMap() {
     var totalCoin = selectedData.upCoin + selectedData.hiddenCoin + selectedData.regularCoin;
-    if (totalCoin > 8) {
-      return "map1"
+    var enemies = selectedData.goomba + selectedData.koopa;
+    for (var key in selectedData) {
+      selectedData[key] = 0;
     }
-    return "map2"
+    if (totalCoin > 12 && enemies > 10) {
+      return "map5"
+    } else if (totalCoin > 12) {
+      return "map6"
+    } else if (totalCoin > 6) {
+      return "map1"
+    } else if (enemies > 10) {
+      return "map2"
+    } else if (enemies < 5) {
+      return "map3"
+    } else if (totalCoin < 6) {
+      return "map5"
+    }
+    return "1-2"
   }
   /**
    * Macro to place the typical ending Things for the inside of a castle area.
