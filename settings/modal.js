@@ -1,3 +1,4 @@
+
 var modal = document.getElementById("myModal");
 function openModal() {
     modal.style.display = "block";
@@ -14,5 +15,6 @@ form.onsubmit = function (event) {
     closeModal(); // Close the modal when the form is submitted
     FSM.GamesRunner.play();
     // Here you can also add your form submission logic or AJAX request
+
 };
 

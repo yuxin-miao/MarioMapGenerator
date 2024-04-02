@@ -14,6 +14,50 @@
     <!-- /build -->
 
     <link rel="shortcut icon" href="Theme/Mario.gif">
+    <script type="module">
+        import vercelkv from 'https://cdn.jsdelivr.net/npm/@vercel/kv@1.0.1/+esm'
+        console.log(vercelkv, 1234)
+        const KV_REST_API_TOKEN = "AaQXASQgYmZmY2E5NzgtOWJjNC00YzBkLThlMGYtNGFkMjc4MmE4MzFjOTM4Y2VlOWI3OGZjNDNkMjkzMjBjYzI4NDliYmI4YTA="
+        const KV_REST_API_URL = "https://living-toucan-42007.upstash.io"
+        var modal = document.getElementById("myModal");
+        function openModal() {
+            modal.style.display = "block";
+        }
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        // Get the form element
+        var form = document.getElementById("questionnaireForm");
+
+        // Bind the closeModal function to the form's submit event
+        form.onsubmit = function (event) {
+            event.preventDefault(); // Prevent actual form submission to server
+            const formData = {
+                enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
+                challengeLevel: document.querySelector('input[name="challengeLevel"]:checked')?.value,
+                replay: document.querySelector('input[name="replay"]:checked')?.value,
+                paceLevel: document.querySelector('input[name="paceLevel"]:checked')?.value
+            };
+            console.log(formData);
+
+            fetch(`${KV_REST_API_URL}/set/review?_token=${KV_REST_API_TOKEN}`, {
+                body: JSON.stringify(formData),
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    closeModal();
+                    FSM.GamesRunner.play();
+
+                })
+                .catch(error => {
+                    console.error('Error posting form data:', error);
+                    // Handle errors - e.g., show an error message
+                });
+        };
+
+    </script>
     <script>
 
         console.log(
@@ -356,6 +400,7 @@
 
 
     <!-- build:js FullScreenMario.min.js -->
+
     <script src="GameStartr/proj/MapGenerator/generateMaps.js"></script>
     <script src="GameStartr/EightBittr/EightBittr.js"></script>
     <script src="GameStartr/GameStartr.js"></script>
@@ -399,11 +444,12 @@
     <script src="settings/sprites.js"></script>
     <script src="settings/statistics.js"></script>
     <script src="settings/ui.js"></script>
-    <script src="settings/modal.js"> </script>
     <!-- /build -->
 
     <!-- build:js index.min.js -->
-    <script src="index.js"></script>
+    <script src="index.js">
+
+    </script>
 
     <!-- /build -->
 </body>
