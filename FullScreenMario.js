@@ -218,6 +218,7 @@ var FullScreenMario = (function (GameStartr) {
     star: 0,
     enterPipe: 0,
   }
+  window.selectedData = selectedData
   /* Resets
    */
 
@@ -8689,6 +8690,7 @@ var FullScreenMario = (function (GameStartr) {
       },
     ];
     if (reference.transport.map == '1-2') {
+
       var nextMap = defineTransportMap();
       // TODO: uplaod selectedData dict to server and reset
       output.push({
@@ -8721,9 +8723,7 @@ var FullScreenMario = (function (GameStartr) {
   function defineTransportMap() {
     var totalCoin = selectedData.upCoin + selectedData.hiddenCoin + selectedData.regularCoin;
     var enemies = selectedData.goomba + selectedData.koopa;
-    for (var key in selectedData) {
-      selectedData[key] = 0;
-    }
+
     if (totalCoin > 12 && enemies > 10) {
       return "map5"
     } else if (totalCoin > 12) {

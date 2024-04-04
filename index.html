@@ -31,6 +31,8 @@
 
         // Bind the closeModal function to the form's submit event
         form.onsubmit = function (event) {
+            console.log(window.selectedData.block)
+
             event.preventDefault(); // Prevent actual form submission to server
             const formData = {
                 enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
@@ -38,10 +40,13 @@
                 replay: document.querySelector('input[name="replay"]:checked')?.value,
                 paceLevel: document.querySelector('input[name="paceLevel"]:checked')?.value
             };
-            console.log(formData);
-
+            const postData = {
+                ...window.selectedData,
+                ...formData
+            }
+            // console.log(postData)
             fetch(`${KV_REST_API_URL}/set/review?_token=${KV_REST_API_TOKEN}`, {
-                body: JSON.stringify(formData),
+                body: JSON.stringify(postData),
                 method: 'POST',
             })
                 .then(response => response.json())
@@ -49,7 +54,9 @@
                     console.log(data);
                     closeModal();
                     FSM.GamesRunner.play();
-
+                    for (var key in window.selectedData) {
+                        window.selectedData[key] = 0;
+                    }
                 })
                 .catch(error => {
                     console.error('Error posting form data:', error);
