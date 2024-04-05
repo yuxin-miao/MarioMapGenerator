@@ -45,7 +45,7 @@
                 ...formData
             }
             // console.log(postData)
-            fetch(`${KV_REST_API_URL}/set/review?_token=${KV_REST_API_TOKEN}`, {
+            fetch(`${KV_REST_API_URL}/set/review-${Date.now()}?_token=${KV_REST_API_TOKEN}`, {
                 body: JSON.stringify(postData),
                 method: 'POST',
             })

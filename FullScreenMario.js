@@ -8721,24 +8721,48 @@ var FullScreenMario = (function (GameStartr) {
     return output;
   }
   function defineTransportMap() {
-    var totalCoin = selectedData.upCoin + selectedData.hiddenCoin + selectedData.regularCoin;
-    var enemies = selectedData.goomba + selectedData.koopa;
+    var totalCoins = selectedData.upCoin + selectedData.hiddenCoin + selectedData.regularCoin;
+    var totalEnemies = selectedData.goomba + selectedData.koopa;
+    var explorationFactor = selectedData.block + selectedData.blockHidden + selectedData.enterPipe;
+    var rewardFactor = totalCoins + (selectedData.mushroom * 2) + (selectedData.mushroom1Up * 3) + (selectedData.star * 3);
 
-    if (totalCoin > 12 && enemies > 10) {
-      return "map5"
-    } else if (totalCoin > 12) {
-      return "map6"
-    } else if (totalCoin > 6) {
-      return "map1"
-    } else if (enemies > 10) {
-      return "map2"
-    } else if (enemies < 5) {
-      return "map3"
-    } else if (totalCoin < 6) {
-      return "map5"
+
+    // High challenge with a focus on rewards and combat.
+    if (rewardFactor > 30 && totalEnemies > 15) {
+      return "map8";
     }
-    return "1-2"
+    // Exploration-centric with a lot of hidden elements and interactive blocks.
+    else if (explorationFactor > 20) {
+      return "map7";
+    }
+    // Rich in coins, slightly easier to navigate but rewarding.
+    else if (totalCoins > 15) {
+      return "map6";
+    }
+    // Focused on enemy encounters, offering a combat-heavy experience.
+    else if (totalEnemies > 12) {
+      return "map2";
+    }
+    // Offers a breather with fewer enemies, suitable for recovering from challenging levels.
+    else if (totalEnemies < 5) {
+      return "map3";
+    }
+    // Simplified layout with fewer bricks and blocks, ideal for newer players or those seeking a straightforward path.
+    else if (explorationFactor < 10) {
+      return "map4";
+    }
+    // A challenging mix of exploration and combat, requiring a balanced skill set.
+    else if (rewardFactor > 20 && totalEnemies > 10) {
+      return "map5";
+    }
+    // A balanced map with moderate challenges, suitable for an average player.
+    else if (rewardFactor < 15) {
+      return "map9";
+    }
+    // Default map with slight enhancements from 1-1 for those not fitting into the above categories.
+    return "map1";
   }
+
   /**
    * Macro to place the typical ending Things for the inside of a castle area.
    *
