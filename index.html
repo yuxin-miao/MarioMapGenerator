@@ -37,7 +37,7 @@
             const formData = {
                 enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
                 challengeLevel: document.querySelector('input[name="challengeLevel"]:checked')?.value,
-                replay: document.querySelector('input[name="replay"]:checked')?.value,
+                adaptation: document.querySelector('input[name="adaptation"]:checked')?.value,
                 paceLevel: document.querySelector('input[name="paceLevel"]:checked')?.value
             };
             const postData = {
@@ -365,7 +365,8 @@
         <div class="modal-content">
             <form id="questionnaireForm">
                 <h2>Questionnaire</h2>
-                <label for="question1">Question 1: How much did you enjoy playing this level overall?</label><br>
+                <label for="question1">
+                    How engaged did you feel during the gameplay?</label><br>
                 <div class="scale-options">
                     <label><input type="radio" id="pace1" name="enjoyLevel" value="1"> 1 </label>
                     <label><input type="radio" id="pace2" name="enjoyLevel" value="2"> 2</label>
@@ -373,7 +374,8 @@
                     <label><input type="radio" id="pace4" name="enjoyLevel" value="4"> 4</label>
                     <label><input type="radio" id="pace5" name="enjoyLevel" value="5"> 5 </label>
                 </div>
-                <label for="question2">Question 2: How would you rate the level of challenge in this level?</label><br>
+                <label for="question2">How fair did you feel the challenges and obstacles were in this
+                    level?</label><br>
                 <div class="scale-options">
                     <label><input type="radio" id="pace1" name="challengeLevel" value="1"> 1 </label>
                     <label><input type="radio" id="pace2" name="challengeLevel" value="2"> 2</label>
@@ -381,15 +383,16 @@
                     <label><input type="radio" id="pace4" name="challengeLevel" value="4"> 4</label>
                     <label><input type="radio" id="pace5" name="challengeLevel" value="5"> 5 </label>
                 </div>
-                <label for="question3">Question 3: How likely are you to replay this level?</label><br>
+                <label for="question3">How well do you feel this level was adapted to your personal play style and
+                    preferences?</label><br>
                 <div class="scale-options">
-                    <label><input type="radio" id="pace1" name="replay" value="1"> 1 </label>
-                    <label><input type="radio" id="pace2" name="replay" value="2"> 2</label>
-                    <label><input type="radio" id="pace3" name="replay" value="3"> 3</label>
-                    <label><input type="radio" id="pace4" name="replay" value="4"> 4</label>
-                    <label><input type="radio" id="pace5" name="replay" value="5"> 5 </label>
+                    <label><input type="radio" id="pace1" name="adaptation" value="1"> 1 </label>
+                    <label><input type="radio" id="pace2" name="adaptation" value="2"> 2</label>
+                    <label><input type="radio" id="pace3" name="adaptation" value="3"> 3</label>
+                    <label><input type="radio" id="pace4" name="adaptation" value="4"> 4</label>
+                    <label><input type="radio" id="pace5" name="adaptation" value="5"> 5 </label>
                 </div>
-                <label for="question4">Question 4: How satisfied were you with the pace of the
+                <label for="question4">How satisfied were you with the pace of the
                     level?</label><br>
                 <div class="scale-options">
                     <label><input type="radio" id="pace1" name="paceLevel" value="1"> 1</label>
