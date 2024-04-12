@@ -38,7 +38,8 @@
                 enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
                 challengeLevel: document.querySelector('input[name="challengeLevel"]:checked')?.value,
                 adaptation: document.querySelector('input[name="adaptation"]:checked')?.value,
-                paceLevel: document.querySelector('input[name="paceLevel"]:checked')?.value
+                paceLevel: document.querySelector('input[name="paceLevel"]:checked')?.value,
+                familiar: document.querySelector('input[name="familiar"]:checked')?.value
             };
             const postData = {
                 ...window.selectedData,
@@ -400,6 +401,14 @@
                     <label><input type="radio" id="pace3" name="paceLevel" value="3"> 3</label>
                     <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
                     <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5</label>
+                </div>
+                <label for="question5">How familiar are you with Super Mario game?</label><br>
+                <div class="scale-options">
+                    <label><input type="radio" id="familiar1" name="familiar" value="1"> 1</label>
+                    <label><input type="radio" id="familiar2" name="familiar" value="2"> 2</label>
+                    <label><input type="radio" id="familiar3" name="familiar" value="3"> 3</label>
+                    <label><input type="radio" id="familiar4" name="familiar" value="4"> 4</label>
+                    <label><input type="radio" id="familiar5" name="familiar" value="5"> 5</label>
                 </div>
                 <!-- Container for scale questions -->
                 <div id="scaleQuestionsContainer"></div>
