@@ -8726,40 +8726,27 @@ var FullScreenMario = (function (GameStartr) {
     var explorationFactor = selectedData.block + selectedData.blockHidden + selectedData.enterPipe;
     var rewardFactor = totalCoins + (selectedData.mushroom * 2) + (selectedData.mushroom1Up * 3) + (selectedData.star * 3);
 
-
-    // High challenge with a focus on rewards and combat.
+    // Map5: High Difficulty Challenge - A challenging mix of exploration and combat.
     if (rewardFactor > 30 && totalEnemies > 15) {
-      return "map8";
+      return "map5";
     }
-    // Exploration-centric with a lot of hidden elements and interactive blocks.
-    else if (explorationFactor > 20) {
-      return "map7";
+    // Map1: Coin and Exploration Focus - Rich in coins and features more bricks for exploration.
+    else if (explorationFactor > 20 || totalCoins > 15) {
+      return "map1";
     }
-    // Rich in coins, slightly easier to navigate but rewarding.
-    else if (totalCoins > 15) {
-      return "map6";
-    }
-    // Focused on enemy encounters, offering a combat-heavy experience.
+    // Map2: Enemy Challenge Focus - Focused on enemy encounters, offering a combat-heavy experience.
     else if (totalEnemies > 12) {
       return "map2";
     }
-    // Offers a breather with fewer enemies, suitable for recovering from challenging levels.
+    // Map3: Low Enemy Focus - Offers a breather with fewer enemies, suitable for recovering from challenging levels.
     else if (totalEnemies < 5) {
       return "map3";
     }
-    // Simplified layout with fewer bricks and blocks, ideal for newer players or those seeking a straightforward path.
+    // Map4: Simplified Navigation - Fewer bricks and blocks, ideal for newer players or those seeking a straightforward path.
     else if (explorationFactor < 10) {
       return "map4";
     }
-    // A challenging mix of exploration and combat, requiring a balanced skill set.
-    else if (rewardFactor > 20 && totalEnemies > 10) {
-      return "map5";
-    }
-    // A balanced map with moderate challenges, suitable for an average player.
-    else if (rewardFactor < 15) {
-      return "map9";
-    }
-    // Default map with slight enhancements from 1-1 for those not fitting into the above categories.
+    // Default to Map1 if none of the above conditions are met.
     return "map1";
   }
 
