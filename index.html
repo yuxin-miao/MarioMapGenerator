@@ -16,7 +16,6 @@
     <link rel="shortcut icon" href="Theme/Mario.gif">
     <script type="module">
         import vercelkv from 'https://cdn.jsdelivr.net/npm/@vercel/kv@1.0.1/+esm'
-        console.log(vercelkv, 1234)
         const KV_REST_API_TOKEN = "AaQXASQgYmZmY2E5NzgtOWJjNC00YzBkLThlMGYtNGFkMjc4MmE4MzFjOTM4Y2VlOWI3OGZjNDNkMjkzMjBjYzI4NDliYmI4YTA="
         const KV_REST_API_URL = "https://living-toucan-42007.upstash.io"
         var modal = document.getElementById("myModal");
@@ -26,12 +25,19 @@
         function closeModal() {
             modal.style.display = "none";
         }
+
         // Get the form element
         var form = document.getElementById("questionnaireForm");
 
         // Bind the closeModal function to the form's submit event
         form.onsubmit = function (event) {
             event.preventDefault(); // Prevent actual form submission to server
+            var tableData = document.getElementById("dataDisplay").rows[0]
+            var displayData = {
+                score: tableData.cells[0].children[1].textContent,
+                map: tableData.cells[2].children[1].textContent,
+                lives: tableData.cells[4].children[1].textContent
+            }
             const formData = {
                 enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
                 challengeLevel: document.querySelector('input[name="challengeLevel"]:checked')?.value,
@@ -41,21 +47,22 @@
             };
             const postData = {
                 ...window.selectedData,
-                ...formData
+                ...formData,
+                ...displayData
             }
-            // console.log(postData)
+            console.log("postData", postData)
             fetch(`${KV_REST_API_URL}/set/review-${Date.now()}?_token=${KV_REST_API_TOKEN}`, {
                 body: JSON.stringify(postData),
                 method: 'POST',
             })
                 .then(response => response.json())
                 .then(data => {
+                    window.selectedData.playerDeath = 0;
                     closeModal();
                     FSM.GamesRunner.play();
                 })
                 .catch(error => {
                     console.error('Error posting form data:', error);
-                    // Handle errors - e.g., show an error message
                 });
         };
 

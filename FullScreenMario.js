@@ -217,6 +217,7 @@ var FullScreenMario = (function (GameStartr) {
     hiddenCoin: 0,
     star: 0,
     enterPipe: 0,
+    playerDeath: 0,
   }
   window.selectedData = selectedData
   /* Resets
@@ -350,6 +351,7 @@ var FullScreenMario = (function (GameStartr) {
    * while, the game restarts again via gameStart.
    */
   function gameOver() {
+    selectedData.playerDeath = 1;
     var EightBitter = EightBittr.prototype.ensureCorrectCaller(this),
       text = EightBitter.ObjectMaker.make("CustomText", {
         texts: [
@@ -362,6 +364,10 @@ var FullScreenMario = (function (GameStartr) {
       textWidth,
       dx,
       i;
+
+
+    openModal();
+    EightBitter.GamesRunner.pause();
 
     EightBitter.gainLife()
 
@@ -2022,7 +2028,6 @@ var FullScreenMario = (function (GameStartr) {
   }
 
   /**
-   * Spawn callback for HammerBros. Gravity is reduced, and the hammer and
    * jump event intervals are started. The cyclical movement counter is set to
    * 0.
    *
@@ -3989,7 +3994,6 @@ var FullScreenMario = (function (GameStartr) {
    */
   function collideLevelTransport(thing, other) {
     var transport = other.transport;
-    console.log("transport triggered");
     openModal();
     if (!thing.player) {
       return;
