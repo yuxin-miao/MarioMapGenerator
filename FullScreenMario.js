@@ -8692,7 +8692,7 @@ var FullScreenMario = (function (GameStartr) {
     if (reference.transport.map == '1-2') {
 
       var nextMap = defineTransportMap();
-      // TODO: uplaod selectedData dict to server and reset
+      // selectedData upload: when submit questoinnaire
       output.push({
         macro: "CastleSmall",
         x: x + (reference.castleDistance || 32),
@@ -8725,17 +8725,17 @@ var FullScreenMario = (function (GameStartr) {
     var totalEnemies = selectedData.goomba + selectedData.koopa;
     var explorationFactor = selectedData.block + selectedData.blockHidden + selectedData.enterPipe;
     var rewardFactor = totalCoins + (selectedData.mushroom * 2) + (selectedData.mushroom1Up * 3) + (selectedData.star * 3);
-
+    console.log("defineTransport totalCoins", totalCoins, " totalenemies", totalEnemies, " EF", explorationFactor, " RF", rewardFactor)
     // Map5: High Difficulty Challenge - A challenging mix of exploration and combat.
     if (rewardFactor > 30 && totalEnemies > 15) {
       return "map5";
     }
     // Map1: Coin and Exploration Focus - Rich in coins and features more bricks for exploration.
-    else if (explorationFactor > 20 || totalCoins > 15) {
+    else if (explorationFactor > 10 || totalCoins > 5) {
       return "map1";
     }
     // Map2: Enemy Challenge Focus - Focused on enemy encounters, offering a combat-heavy experience.
-    else if (totalEnemies > 12) {
+    else if (totalEnemies > 8) {
       return "map2";
     }
     // Map3: Low Enemy Focus - Offers a breather with fewer enemies, suitable for recovering from challenging levels.

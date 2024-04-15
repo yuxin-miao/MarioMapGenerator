@@ -31,8 +31,6 @@
 
         // Bind the closeModal function to the form's submit event
         form.onsubmit = function (event) {
-            console.log(window.selectedData.block)
-
             event.preventDefault(); // Prevent actual form submission to server
             const formData = {
                 enjoyLevel: document.querySelector('input[name="enjoyLevel"]:checked')?.value,
@@ -52,12 +50,8 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     closeModal();
                     FSM.GamesRunner.play();
-                    for (var key in window.selectedData) {
-                        window.selectedData[key] = 0;
-                    }
                 })
                 .catch(error => {
                     console.error('Error posting form data:', error);
