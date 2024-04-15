@@ -26,12 +26,25 @@
             modal.style.display = "none";
         }
 
+        function clearForm() {
+            document.querySelectorAll('#questionnaireForm input[type="radio"]').forEach((input) => {
+                input.checked = false;
+            });
+        }
+        function allQuestionsAnswered() {
+            const inputs = document.querySelectorAll('#questionnaireForm input[type="radio"]:checked');
+            return inputs.length === 5;
+        }
         // Get the form element
         var form = document.getElementById("questionnaireForm");
 
-        // Bind the closeModal function to the form's submit event
         form.onsubmit = function (event) {
             event.preventDefault(); // Prevent actual form submission to server
+            if (!allQuestionsAnswered()) {
+                alert('Please answer all the questions.');
+                return;
+            }
+
             var tableData = document.getElementById("dataDisplay").rows[0]
             var displayData = {
                 score: tableData.cells[0].children[1].textContent,
@@ -59,6 +72,7 @@
                 .then(data => {
                     window.selectedData.playerDeath = 0;
                     closeModal();
+                    clearForm();
                     FSM.GamesRunner.play();
                 })
                 .catch(error => {
@@ -403,7 +417,7 @@
                     <label><input type="radio" id="pace4" name="paceLevel" value="4"> 4</label>
                     <label><input type="radio" id="pace5" name="paceLevel" value="5"> 5</label>
                 </div>
-                <label for="question5">How familiar are you with Super Mario game?</label><br>
+                <label for="question5">How familiar are you with Super Mario Bros?</label><br>
                 <div class="scale-options">
                     <label><input type="radio" id="familiar1" name="familiar" value="1"> 1</label>
                     <label><input type="radio" id="familiar2" name="familiar" value="2"> 2</label>
