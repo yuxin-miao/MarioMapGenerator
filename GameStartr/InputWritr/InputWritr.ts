@@ -110,7 +110,6 @@ class InputWritr {
       throw new Error("No triggers given to InputWritr.");
     }
     this.triggers = settings.triggers;
-    console.log(settings.triggers);
     // Headless browsers like PhantomJS might not know performance, so
     // Date.now is used as a backup
     if (typeof settings.getTimestamp === "undefined") {
@@ -497,8 +496,6 @@ class InputWritr {
   saveHistory(name: string = undefined): void {
     this.histories[this.histories.length] = history;
     this.histories.length += 1;
-    console.log("name: ", name);
-    console.log(history);
     if (arguments.length) {
       this.histories[name] = history;
     }

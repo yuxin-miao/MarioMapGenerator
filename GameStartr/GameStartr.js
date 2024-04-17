@@ -474,7 +474,7 @@ var GameStartr = (function (EightBittr) {
      * @param {Number} [dy]   How far to scroll vertically.
      */
     function scrollWindow(dx, dy) {
-        var EightBitter =  EightBittr.prototype.ensureCorrectCaller(this);
+        var EightBitter = EightBittr.prototype.ensureCorrectCaller(this);
 
         dx = dx | 0;
         dy = dy | 0;
@@ -749,9 +749,9 @@ var GameStartr = (function (EightBittr) {
      *                                       WorldSeedr.generateFull call.
      */
     function mapPlaceRandomCommands(EightBitter, generatedCommands) {
-      const key = new Date()
-      localStorage.setItem(key.toISOString(), JSON.stringify(generatedCommands))
-      console.log(JSON.stringify(generatedCommands))
+        const key = new Date()
+        localStorage.setItem(key.toISOString(), JSON.stringify(generatedCommands))
+        // console.log(JSON.stringify(generatedCommands))
 
         var MapsCreator = EightBitter.MapsCreator,
             MapsHandler = EightBitter.MapsHandler,
@@ -931,7 +931,7 @@ var GameStartr = (function (EightBittr) {
      * @param {Number} dy
      */
     function shiftAll(dx, dy) {
-        var EightBitter =  EightBittr.prototype.ensureCorrectCaller(this);
+        var EightBitter = EightBittr.prototype.ensureCorrectCaller(this);
         EightBitter.GroupHolder.callAll(
             EightBitter, EightBitter.shiftThings, dx, dy, true
         );
@@ -1176,8 +1176,8 @@ var GameStartr = (function (EightBittr) {
      */
     function generateObjectKey(thing) {
         return thing.EightBitter.MapsHandler.getArea().setting
-                + ' ' + thing.groupType + ' '
-                + thing.title + ' ' + thing.className;
+            + ' ' + thing.groupType + ' '
+            + thing.title + ' ' + thing.className;
     }
 
     /**
@@ -1401,12 +1401,12 @@ var GameStartr = (function (EightBittr) {
      *          called within a callback of a genuine user-triggered event.
      */
     function takeScreenshot(name, format) {
-        var EightBitter =  EightBittr.prototype.ensureCorrectCaller(this),
+        var EightBitter = EightBittr.prototype.ensureCorrectCaller(this),
             format = "image/png",
             link = EightBitter.createElement("a", {
                 "download": (
-                        name || (EightBitter.settings.ui.globalName + " Screenshot")
-                    ) + "." + format.split("/")[1],
+                    name || (EightBitter.settings.ui.globalName + " Screenshot")
+                ) + "." + format.split("/")[1],
                 "href": EightBitter.canvas.toDataURL(format)
                     .replace(format, "image/octet-stream")
             });
@@ -1418,7 +1418,7 @@ var GameStartr = (function (EightBittr) {
      *
      */
     function addPageStyles(styles) {
-        var EightBitter =  EightBittr.prototype.ensureCorrectCaller(this),
+        var EightBitter = EightBittr.prototype.ensureCorrectCaller(this),
             sheet = EightBitter.createElement("style", {
                 "type": "text/css"
             }),

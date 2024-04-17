@@ -373,8 +373,6 @@ var InputWritr = (function () {
         if (name === void 0) { name = undefined; }
         this.histories[this.histories.length] = history;
         this.histories.length += 1;
-        console.log("name: ", name);
-        console.log(history);
         if (arguments.length) {
             this.histories[name] = history;
         }

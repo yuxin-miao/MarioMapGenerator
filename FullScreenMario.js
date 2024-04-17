@@ -218,6 +218,7 @@ var FullScreenMario = (function (GameStartr) {
     star: 0,
     enterPipe: 0,
     playerDeath: 0,
+    currentMap: "1-1",
   }
   window.selectedData = selectedData
   /* Resets
@@ -645,8 +646,8 @@ var FullScreenMario = (function (GameStartr) {
    * @param {Player} player
    */
   function keyDownDown(player, event) {
-    printDict(selectedData);
-    console.log(player, 123)
+    // printDict(selectedData);
+    //console.log(player, 123)
 
     if (player.EightBitter.GamesRunner.getPaused()) {
       return;
@@ -8693,8 +8694,27 @@ var FullScreenMario = (function (GameStartr) {
         collectionKey: "FlagPole",
       },
     ];
-    if (reference.transport.map == '1-2') {
+    /*
+        if (reference.transport.map == 'map11') {
+          selectedData.currentMap = "map1";
+          reference.transport.map = '1-2';
+        }
+        else if (reference.transport.map == 'map22') {
+          selectedData.currentMap = "map2";
+          reference.transport.map = '1-2';
+        } else if (reference.transport.map == 'map33') {
+          selectedData.currentMap = "map3";
+          reference.transport.map = '1-2';
+        } else if (reference.transport.map == 'map44') {
+          selectedData.currentMap = "map4";
+          reference.transport.map = '1-2';
+        } else if (reference.transport.map == 'map55') {
+          selectedData.currentMap = "map5";
+        } */
 
+    if (reference.transport.map == '1-2') {
+      selectedData.currentMap = window.mapCurrent.name;
+      // console.log("reference", reference)
       var nextMap = defineTransportMap();
       // selectedData upload: when submit questoinnaire
       output.push({
@@ -8739,17 +8759,17 @@ var FullScreenMario = (function (GameStartr) {
       return "map1";
     }
     // Map2: Enemy Challenge Focus - Focused on enemy encounters, offering a combat-heavy experience.
-    else if (totalEnemies > 8) {
+    else {
       return "map2";
     }
-    // Map3: Low Enemy Focus - Offers a breather with fewer enemies, suitable for recovering from challenging levels.
-    else if (totalEnemies < 5) {
-      return "map3";
-    }
-    // Map4: Simplified Navigation - Fewer bricks and blocks, ideal for newer players or those seeking a straightforward path.
-    else if (explorationFactor < 10) {
-      return "map4";
-    }
+    //     // Map3: Low Enemy Focus - Offers a breather with fewer enemies, suitable for recovering from challenging levels.
+    //     else if (totalEnemies < 3) {
+    //   return "map3";
+    // }
+    // // Map4: Simplified Navigation - Fewer bricks and blocks, ideal for newer players or those seeking a straightforward path.
+    // else if (explorationFactor < 10) {
+    //   return "map4";
+    // }
     // Default to Map1 if none of the above conditions are met.
     return "map1";
   }

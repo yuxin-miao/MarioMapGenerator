@@ -686,7 +686,7 @@ var MapsCreatr = (function () {
         if (!thing.noBoundaryStretch && area.boundaries) {
             this.stretchAreaBoundaries(prething, area);
         }
-        // If a Thing is an entrance, then the location it is an entrance to 
+        // If a Thing is an entrance, then the location it is an entrance to
         // must know it and its position. Note that this will have to be changed
         // for Pokemon/Zelda style games.
         if (thing[this.keyEntrance] !== undefined && typeof thing[this.keyEntrance] !== "object") {
@@ -716,9 +716,9 @@ var MapsCreatr = (function () {
      * @param {Map} map
      */
     MapsCreatr.prototype.setMapAreas = function (map) {
-        var areasRaw = map.areas, locationsRaw = map.locations, 
-        // The parsed containers should be the same types as the originals
-        areasParsed = new areasRaw.constructor(), locationsParsed = new locationsRaw.constructor(), area, location, i;
+        var areasRaw = map.areas, locationsRaw = map.locations,
+            // The parsed containers should be the same types as the originals
+            areasParsed = new areasRaw.constructor(), locationsParsed = new locationsRaw.constructor(), area, location, i;
         for (i in areasRaw) {
             if (areasRaw.hasOwnProperty(i)) {
                 area = this.ObjectMaker.make("Area", areasRaw[i]);
@@ -751,7 +751,6 @@ var MapsCreatr = (function () {
                 else if (location.entry && location.entry.constructor === String) {
                     location.entry = this.entrances[String(location.entry)];
                 }
-                console.log("Location", i, location);
                 if (!location.entry) {
                     throw new Error("sup");
                 }
@@ -773,9 +772,9 @@ var MapsCreatr = (function () {
      * @param {Map} map
      */
     MapsCreatr.prototype.setMapLocations = function (map) {
-        var locsRaw = map.locations, 
-        // The parsed container should be the same type as the original
-        locsParsed = new locsRaw.constructor(), location, i;
+        var locsRaw = map.locations,
+            // The parsed container should be the same type as the original
+            locsParsed = new locsRaw.constructor(), location, i;
         for (i in locsRaw) {
             if (locsRaw.hasOwnProperty(i)) {
                 location = this.ObjectMaker.make("Location", locsRaw[i]);

@@ -245,7 +245,6 @@ class MapsHandlr {
             this.mapName = name;
          }
 
-        console.log(this.mapCurrent, 'mapCurrent')
         // Most of the work is done by setLocation (by default, the map's first)
 
         if (location) {
