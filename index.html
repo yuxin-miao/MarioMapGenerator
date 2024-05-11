@@ -64,8 +64,8 @@
                 ...displayData,
             }
             //console.log("postData", postData)
-            fetch(`${KV_REST_API_URL}/set/review/${Date.now()}?_token=${KV_REST_API_TOKEN}`, {
-                body: JSON.stringify(postData),
+            fetch(`${KV_REST_API_URL}?_token=${KV_REST_API_TOKEN}`, {
+                body: JSON.stringify(["HSET", "review", Date.now(), JSON.stringify(postData)]),
                 method: 'POST',
             })
                 .then(response => response.json())
